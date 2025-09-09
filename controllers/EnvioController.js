@@ -1,10 +1,12 @@
 // controllers/EnvioController.js
 const EnvioModel = require("../models/EnvioModel");
 
+// GET - listar todos
 const getEnvios = (req, res) => {
     res.json(EnvioModel.getEnvios());
 };
 
+// GET - listar uno
 const getEnvio = (req, res) => {
     const envio = EnvioModel.getById(req.params.id);
     if (!envio) {
@@ -13,6 +15,7 @@ const getEnvio = (req, res) => {
     res.json(envio);
 };
 
+// POST - agregar nuevo
 const addEnvio = (req, res) => {
     const { id, cliente, origen, destino, estado } = req.body;
     if (!id || !cliente || !origen || !destino) {
@@ -22,6 +25,7 @@ const addEnvio = (req, res) => {
     res.status(201).json(nuevo);
 };
 
+// PUT - reemplazar envío completo
 const updateEnvio = (req, res) => {
     const { cliente, origen, destino, estado } = req.body;
     const actualizado = EnvioModel.updateEnvio(req.params.id, cliente, origen, destino, estado);
@@ -31,6 +35,7 @@ const updateEnvio = (req, res) => {
     res.json(actualizado);
 };
 
+// PATCH - actualizar envío parcialmente
 const patchEnvio = (req, res) => {
     const actualizado = EnvioModel.patchEnvio(req.params.id, req.body);
     if (!actualizado) {
@@ -39,8 +44,10 @@ const patchEnvio = (req, res) => {
     res.json(actualizado);
 };
 
+// DELETE - eliminar envío
 const deleteEnvio = (req, res) => {
-    const eliminado = EnvioModel.removeEnvio(req.params.id);
+    const id = parseInt(req.params.id); //asegurar que sea un número
+    const eliminado = EnvioModel.removeEnvio(id);
     if (!eliminado) {
         return res.status(404).json({ message: "Envío no encontrado" });
     }
