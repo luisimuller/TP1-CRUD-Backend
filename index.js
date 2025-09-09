@@ -4,7 +4,6 @@ const envioRoutes = require("./routes/envioRoutes");
 const app = express();
 const PORT = 3000;
 
-// Middleware para parsear JSON
 app.use(express.json());
 
 // Uso de rutas
