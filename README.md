@@ -3,14 +3,17 @@
 A continuación se muestrans las posibles clases para nuestro proyecto:
 
 **Cliente**
+
 - idCliente (PK)
 - nombre
 - apellido
 - razonSocial
 - direccion
 - telefono
-- mail\
+- mail
+
 **Envio**
+
 - idEnvio (PK)
 - idCliente (FK → Cliente)
 - origen
@@ -19,26 +22,33 @@ A continuación se muestrans las posibles clases para nuestro proyecto:
 - estado
 - costo
 - idVehiculo (FK → Vehiculo)
-- idChofer (FK → Chofer)\
+- idChofer (FK → Chofer)
+
 **Vehiculo**
+
 - idVehiculo (PK)
 - patente
 - tipo (camión, furgón, moto, etc.)
 - capacidad
-- estado (activo, en mantenimiento, dado de baja)\
+- estado (activo, en mantenimiento, dado de baja)
+
 **Chofer**
+
 - idChofer (PK)
 - nombre
 - apellido
 - dni
 - licencia
-- telefono\
+- telefono
+
 **Factura**
+
 - idFactura (PK)
 - idEnvio (FK → Envio)
 - fecha
 - monto
 - metodoPago
+
 ## Endpoints a probar
 ### Envíos
 
