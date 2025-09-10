@@ -1,57 +1,84 @@
-// controllers/EnvioController.js
+// /src/controllers/EnvioController.js
 const EnvioModel = require("../models/EnvioModel");
 
-// GET - listar todos
+
 const getEnvios = (req, res) => {
-    res.json(EnvioModel.getEnvios());
+    try {
+        res.json(EnvioModel.getEnvios());
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener envíos", error: error.message });
+    }
 };
 
-// GET - listar uno
+
 const getEnvio = (req, res) => {
-    const envio = EnvioModel.getById(req.params.id);
-    if (!envio) {
-        return res.status(404).json({ message: "Envío no encontrado" });
+    try {
+        const envio = EnvioModel.getById(req.params.id);
+        if (!envio) {
+            return res.status(404).json({ message: "Envío no encontrado" });
+        }
+        res.json(envio);
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener el envío", error: error.message });
     }
-    res.json(envio);
 };
 
-// POST - agregar nuevo
+
 const addEnvio = (req, res) => {
-    const { id, cliente, origen, destino, estado } = req.body;
-    if (!id || !cliente || !origen || !destino) {
-        return res.status(400).json({ message: "Faltan datos obligatorios" });
+    try {
+        const { idCliente, idVehiculo, idChofer, origen, destino, fechaEnvio, estado, costo } = req.body;
+        
+        if (!idCliente || !idVehiculo || !idChofer || !origen || !destino) {
+            return res.status(400).json({ message: "Faltan datos obligatorios: idCliente, idVehiculo, idChofer, origen, destino" });
+        }
+        
+        const nuevoEnvio = EnvioModel.addEnvio({
+            idCliente, idVehiculo, idChofer, origen, destino, fechaEnvio, estado, costo
+        });
+        
+        res.status(201).json(nuevoEnvio);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
-    const nuevo = EnvioModel.addEnvio(id, cliente, origen, destino, estado);
-    res.status(201).json(nuevo);
 };
 
-// PUT - reemplazar envío completo
 const updateEnvio = (req, res) => {
-    const { cliente, origen, destino, estado } = req.body;
-    const actualizado = EnvioModel.updateEnvio(req.params.id, cliente, origen, destino, estado);
-    if (!actualizado) {
-        return res.status(404).json({ message: "Envío no encontrado" });
+    try {
+        const actualizado = EnvioModel.updateEnvio(req.params.id, req.body);
+        if (!actualizado) {
+            return res.status(404).json({ message: "Envío no encontrado" });
+        }
+        res.json(actualizado);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
-    res.json(actualizado);
 };
 
-// PATCH - actualizar envío parcialmente
+
 const patchEnvio = (req, res) => {
-    const actualizado = EnvioModel.patchEnvio(req.params.id, req.body);
-    if (!actualizado) {
-        return res.status(404).json({ message: "Envío no encontrado" });
+    try {
+        const actualizado = EnvioModel.patchEnvio(req.params.id, req.body);
+        if (!actualizado) {
+            return res.status(404).json({ message: "Envío no encontrado" });
+        }
+        res.json(actualizado);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
-    res.json(actualizado);
 };
 
-// DELETE - eliminar envío
+
 const deleteEnvio = (req, res) => {
-    const id = parseInt(req.params.id); //asegurar que sea un número
-    const eliminado = EnvioModel.removeEnvio(id);
-    if (!eliminado) {
-        return res.status(404).json({ message: "Envío no encontrado" });
+    try {
+        const id = parseInt(req.params.id);
+        const eliminado = EnvioModel.removeEnvio(id);
+        if (!eliminado) {
+            return res.status(404).json({ message: "Envío no encontrado" });
+        }
+        res.json({ message: "Envío eliminado", eliminado });
+    } catch (error) {
+        res.status(500).json({ message: "Error al eliminar envío", error: error.message });
     }
-    res.json({ message: "Envío eliminado", eliminado });
 };
 
 module.exports = {
@@ -60,5 +87,5 @@ module.exports = {
     addEnvio,
     updateEnvio,
     patchEnvio,
-    deleteEnvio,
+    deleteEnvio
 };
