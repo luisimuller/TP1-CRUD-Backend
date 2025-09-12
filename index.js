@@ -1,7 +1,8 @@
 // /index.js
 const express = require("express");
 const envioRoutes = require("./routes/envioRoutes");
-const choferRoutes = require("./routes/ChoferRoutes"); // ← Agregar esta línea
+const choferRoutes = require("./routes/ChoferRoutes");
+const clienteRoutes = require("./routes/ClienteRoutes");
 
 const app = express();
 const PORT = 3000;
@@ -10,8 +11,10 @@ app.use(express.json());
 
 // Routes
 app.use("/envios", envioRoutes);
-app.use("/choferes", choferRoutes); // ← Agregar esta línea
+app.use("/choferes", choferRoutes);
+app.use("/clientes", clienteRoutes);
 
+// Ruta principal
 // Ruta principal
 app.get("/", (req, res) => {
     res.json({
@@ -25,6 +28,14 @@ app.get("/", (req, res) => {
                 actualizarParcial: "PATCH /envios/:id",
                 eliminar: "DELETE /envios/:id"
             },
+            clientes: {
+                listar: "GET /clientes",
+                obtener: "GET /clientes/:id",
+                crear: "POST /clientes/agregar",
+                actualizar: "PUT /clientes/:id",
+                actualizarParcial: "PATCH /clientes/:id",
+                eliminar: "DELETE /clientes/:id"
+            },
             choferes: {
                 listar: "GET /choferes",
                 obtener: "GET /choferes/:id",
@@ -37,7 +48,7 @@ app.get("/", (req, res) => {
     });
 });
 
+
 app.listen(PORT, () => {
     console.log(`Servidor conectado en http://localhost:${PORT}`);
 });
-
