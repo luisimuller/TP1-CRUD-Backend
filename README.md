@@ -1,10 +1,10 @@
 # TP1-CRUD-Backend
 ## Clases
-A continuación se muestrans las posibles clases para nuestro proyecto:
+A continuación se muestrans las clases para nuestro proyecto y su relación:
 
 **Cliente**
 
-- idCliente (PK)
+- id (PK)
 - nombre
 - apellido
 - razonSocial
@@ -12,7 +12,24 @@ A continuación se muestrans las posibles clases para nuestro proyecto:
 - telefono
 - mail
 
-**Envio**
+**Vehiculos**
+
+- id (PK)
+- patente
+- tipo (camión, furgón, moto, etc.)
+- capacidad
+- estado (activo, en mantenimiento, dado de baja)
+
+**Choferes**
+
+- id (PK)
+- nombre
+- apellido
+- dni
+- licencia
+- telefono
+
+**Envios**
 
 - idEnvio (PK)
 - idCliente (FK → Cliente)
@@ -24,26 +41,9 @@ A continuación se muestrans las posibles clases para nuestro proyecto:
 - idVehiculo (FK → Vehiculo)
 - idChofer (FK → Chofer)
 
-**Vehiculo**
+**Facturas**
 
-- idVehiculo (PK)
-- patente
-- tipo (camión, furgón, moto, etc.)
-- capacidad
-- estado (activo, en mantenimiento, dado de baja)
-
-**Chofer**
-
-- idChofer (PK)
-- nombre
-- apellido
-- dni
-- licencia
-- telefono
-
-**Factura**
-
-- idFactura (PK)
+- id (PK)
 - idEnvio (FK → Envio)
 - fecha
 - monto
@@ -52,67 +52,80 @@ A continuación se muestrans las posibles clases para nuestro proyecto:
 ## Endpoints a probar
 ### Envíos
 
-**Listar todos los envíos (GET)**
-```
+***Listar todos los envíos (GET)***
+´´´
 GET http://localhost:3000/envios
-```
+´´´
 
-**Crear un nuevo envío (POST)**
-```
-GET http://localhost:3000/envios/agregar
-```
-```
+***Crear un nuevo envío (POST)***
+´´´
+POST http://localhost:3000/envios/agregar
+´´´
+´´´
 {
-  "id": 3,
-  "cliente": "TransLog",
+  "idCliente": 1,
+  "idVehiculo": 2,
+  "idChofer": 1,
   "origen": "La Plata",
   "destino": "Mar del Plata",
-  "estado": "pendiente"
+  "fechaEnvio": "2024-02-01",
+  "estado": "pendiente",
+  "costo": 2000
 }
-```
+´´´
 
-**Obtener un envío por ID (GET)**
-```
+***Obtener un envío por ID (GET)***
+
+´´´
 GET http://localhost:3000/envios/3
-```
+´´´
 
-**Actualizar un envío completo (PUT)**
-```
+***Actualizar un envío completo (PUT)***
+´´´
 PUT http://localhost:3000/envios/3
-```
-```
+´´´
+´´´
 {
-  "cliente": "TransLog",
+  "idCliente": 1,
+  "idVehiculo": 2,
+  "idChofer": 1,
   "origen": "La Plata",
   "destino": "Mar del Plata",
-  "estado": "en tránsito"
+  "fechaEnvio": "2024-02-02",
+  "estado": "en tránsito",
+  "costo": 2500
 }
-```
+´´´´
 
-**Actualizar envío parcialmente (PATCH)**
-```
-PATCH http://localhost:3000/envios/2
-```
-```
+***Actualizar un envío parcialmente (PATCH)***
+´´´
+PATCH http://localhost:3000/envios/3
+´´´
+´´´
 {
   "estado": "entregado"
 }
-```
+´´´
 
-**Eliminar envío (DELETE)**
-```
+***Eliminar un envío (DELETE)***
+´´´
 DELETE http://localhost:3000/envios/3
-```
+´´´
+
 Resultado esperado:
-```
+´´´
 {
   "message": "Envío eliminado",
   "eliminado": {
     "id": 3,
-    "cliente": "TransLog",
+    "idCliente": 1,
+    "idVehiculo": 2,
+    "idChofer": 1,
     "origen": "La Plata",
     "destino": "Mar del Plata",
-    "estado": "en tránsito"
+    "fechaEnvio": "2024-02-02",
+    "estado": "en tránsito",
+    "costo": 2500
   }
 }
-```
+´´´
