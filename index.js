@@ -3,6 +3,7 @@ const express = require("express");
 const envioRoutes = require("./routes/envioRoutes");
 const choferRoutes = require("./routes/ChoferRoutes");
 const clienteRoutes = require("./routes/ClienteRoutes");
+const facturaRoutes = require("./routes/FacturaRoutes");
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use("/envios", envioRoutes);
 app.use("/choferes", choferRoutes);
 app.use("/clientes", clienteRoutes);
+app.use("/facturas", facturaRoutes);
+
 
 // Ruta principal
 // Ruta principal
@@ -43,6 +46,15 @@ app.get("/", (req, res) => {
                 actualizar: "PUT /choferes/:id",
                 actualizarParcial: "PATCH /choferes/:id",
                 eliminar: "DELETE /choferes/:id"
+            },
+            facturas: {
+                listar: "GET /facturas",
+                obtener: "GET /facturas/:id",
+                crear: "POST /facturas/agregar",
+                actualizar: "PUT /facturas/:id",
+                actualizarParcial: "PATCH /facturas/:id",
+                eliminar: "DELETE /facturas/:id",
+                porEnvio: "GET /facturas/envio/:idEnvio"
             }
         }
     });
