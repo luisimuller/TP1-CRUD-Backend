@@ -53,15 +53,15 @@ A continuación se muestrans las clases para nuestro proyecto y su relación:
 ### Envíos
 
 ***Listar todos los envíos (GET)***
-´´´
+```
 GET http://localhost:3000/envios
-´´´
+```
 
 ***Crear un nuevo envío (POST)***
-´´´
+```
 POST http://localhost:3000/envios/agregar
-´´´
-´´´
+```
+```
 {
   "idCliente": 1,
   "idVehiculo": 2,
@@ -72,19 +72,19 @@ POST http://localhost:3000/envios/agregar
   "estado": "pendiente",
   "costo": 2000
 }
-´´´
+```
 
 ***Obtener un envío por ID (GET)***
 
-´´´
+```
 GET http://localhost:3000/envios/3
-´´´
+```
 
 ***Actualizar un envío completo (PUT)***
-´´´
+```
 PUT http://localhost:3000/envios/3
-´´´
-´´´
+```
+```
 {
   "idCliente": 1,
   "idVehiculo": 2,
@@ -95,25 +95,25 @@ PUT http://localhost:3000/envios/3
   "estado": "en tránsito",
   "costo": 2500
 }
-´´´´
+```
 
 ***Actualizar un envío parcialmente (PATCH)***
-´´´
+```
 PATCH http://localhost:3000/envios/3
-´´´
-´´´
+```
+```
 {
   "estado": "entregado"
 }
-´´´
+```
 
 ***Eliminar un envío (DELETE)***
-´´´
+```
 DELETE http://localhost:3000/envios/3
-´´´
+```
 
 Resultado esperado:
-´´´
+```
 {
   "message": "Envío eliminado",
   "eliminado": {
@@ -128,4 +128,4 @@ Resultado esperado:
     "costo": 2500
   }
 }
-´´´
+```
