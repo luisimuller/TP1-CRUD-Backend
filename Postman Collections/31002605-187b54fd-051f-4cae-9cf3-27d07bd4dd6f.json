@@ -598,6 +598,11 @@
 			"id": "31002605-e8454747-396d-45d2-8b76-436ac5de90b7"
 		},
 		{
+			"name": "New Folder",
+			"item": [],
+			"id": "31002605-f9c99d59-8f54-4e1b-8b99-d7155339c57f"
+		},
+		{
 			"name": "API Info",
 			"id": "31002605-91246b62-9fc1-411b-a35a-dfdaa136a00d",
 			"protocolProfileBehavior": {
@@ -616,18 +621,6 @@
 						""
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"id": "31002605-ba4ac85a-89b5-44f8-b2d2-56c18d0c5337",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}
