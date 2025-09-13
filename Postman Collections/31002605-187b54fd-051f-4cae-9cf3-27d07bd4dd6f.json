@@ -593,6 +593,11 @@
 			"id": "31002605-87dbf588-63fc-4809-9634-d88d4a42b643"
 		},
 		{
+			"name": "New Folder",
+			"item": [],
+			"id": "31002605-e8454747-396d-45d2-8b76-436ac5de90b7"
+		},
+		{
 			"name": "API Info",
 			"id": "31002605-91246b62-9fc1-411b-a35a-dfdaa136a00d",
 			"protocolProfileBehavior": {
