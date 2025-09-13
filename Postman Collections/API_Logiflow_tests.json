@@ -190,7 +190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idEnvio\":2,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"38000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+							"raw": "{\r\n    \"idEnvio\":2,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"27000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
