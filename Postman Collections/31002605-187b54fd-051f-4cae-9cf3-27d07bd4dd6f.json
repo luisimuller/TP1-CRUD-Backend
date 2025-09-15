@@ -603,33 +603,6 @@
 			"id": "31002605-f9c99d59-8f54-4e1b-8b99-d7155339c57f"
 		},
 		{
-			"name": "Chofer",
-			"item": [
-				{
-					"name": "Get Choferes",
-					"id": "31002605-f066860a-a832-40fa-b653-47e641da10a4",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/choferes",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"choferes"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "31002605-10c408a2-2a31-40f2-9490-61d4c662f41f"
-		},
-		{
 			"name": "API Info",
 			"id": "31002605-91246b62-9fc1-411b-a35a-dfdaa136a00d",
 			"protocolProfileBehavior": {
