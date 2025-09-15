@@ -501,7 +501,25 @@
 			"item": [
 				{
 					"name": "Get Choferes",
-					"id": "f066860a-a832-40fa-b653-47e641da10a4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "64fa91bf-6489-49c0-9968-cc730a6908a9",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Add Chofer\");",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "c4fd3841-e87a-4300-b2b5-5c1148e52032",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -510,10 +528,611 @@
 						"header": [],
 						"url": "{{URL}}/choferes"
 					},
-					"response": []
+					"response": [
+						{
+							"id": "f7a5fba2-c00e-4302-87a4-d3cd5c021fc0",
+							"name": "Get Choferes Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/choferes"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "228"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e4-SiZ1AkkPyQOdQ8JX8VmUjFr3JR4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:19:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\",\n        \"dni\": \"30123456\",\n        \"licencia\": \"Profesional\",\n        \"telefono\": \"111222333\"\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"Laura\",\n        \"apellido\": \"Rodríguez\",\n        \"dni\": \"28987654\",\n        \"licencia\": \"Profesional\",\n        \"telefono\": \"444555666\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7b9985f8-d519-4f72-a386-d3bcf241cc88",
+								"exec": [
+									"pm.test(\"Status code es 201\", function () {",
+									"    pm.expect(pm.response.code).to.eql(201);",
+									"});",
+									"",
+									"pm.test(\"Response devuelve un nuevo Chofer\", function(){",
+									"    pm.expect(pm.response.json()).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.environment.set(\"idChofer\", pm.response.json().id);",
+									"",
+									"pm.execution.setNextRequest(\"get Chofer by Id\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d97d266e-8f2d-416e-9020-bb712def7ab6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "b901a891-0da5-4e30-8705-569f3398e76d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/choferes/agregar"
+					},
+					"response": [
+						{
+							"id": "51ce2d4d-3c28-4653-9f9a-ec0768d76b8a",
+							"name": "Add Chofer Successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/choferes/agregar"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-zIPkFrLv3ugj/GZ0uXrY1yqHFTY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:23:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565000289\n}"
+						},
+						{
+							"id": "624843b3-dce9-40f5-8282-0b01427da8f1",
+							"name": "Chofer ya existe Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/choferes/agregar"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-QDl3wbz9hUAU+ommsuJukMPohzg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 20:31:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Ya existe un chofer con este DNI\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Chofer by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f709864-1621-42e7-a73f-6c6fec684e22",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Update Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "44bbca48-1e29-42dd-bcaa-363790fd9fc7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}"
+						},
+						"url": "{{URL}}/choferes/{{idChofer}}"
+					},
+					"response": [
+						{
+							"id": "e0e0ea6c-90a6-4135-8542-bbe404a44681",
+							"name": "Get Chofer by Id Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}"
+								},
+								"url": "{{URL}}/choferes/{{idChofer}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-zIPkFrLv3ugj/GZ0uXrY1yqHFTY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:29:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565000289\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "13dc1bfa-63d8-4bea-9c6e-ef8e01714b85",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Patch Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e06882ec-c134-4956-89c6-15ee37709d52",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/choferes/{{idChofer}}"
+					},
+					"response": [
+						{
+							"id": "01dcf343-e8b1-438d-83e8-35d8a110420e",
+							"name": "Update Chofer Successful",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/choferes/{{idChofer}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-S9zV4AMoqm+R7Iw0f4Qug7mHqN0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:31:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565050509\n}"
+						}
+					]
+				},
+				{
+					"name": "Patch Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1543729f-28d5-4d61-ae02-864fbb425a94",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Delete Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "b1bc321d-6911-4fe7-a2a2-73fcb52c1529",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/choferes/{{idChofer}}"
+					},
+					"response": [
+						{
+							"id": "d87ff1ad-f48d-43cf-8c85-6b5f6dda660e",
+							"name": "Patch Chofer Successful",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/choferes/{{idChofer}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-S9zV4AMoqm+R7Iw0f4Qug7mHqN0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:31:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565050509\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "366ba8cb-e349-4bea-8dd7-037d3829c171",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response tiene el mensaje de Chofer eliminado\", function () {\r",
+									"    pm.expect(pm.response.json().message).to.eql(\"Chofer eliminado\");\r",
+									"})\r",
+									"\r",
+									"pm.environment.set(\"idChofer\",\"\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "ca39b6d9-50b2-493a-9dfd-1806fe275f28",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{URL}}/choferes/{{idChofer}}"
+					},
+					"response": [
+						{
+							"id": "6a2343e3-bebf-4370-bd69-76dcec552897",
+							"name": "Delete Chofer Successful",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "/choferes/3"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-cgEr+K4Z6T989dDjev6IsDRkhcw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:36:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Chofer eliminado\",\n    \"eliminado\": {\n        \"id\": 3,\n        \"nombre\": \"Juan Carlos\",\n        \"apellido\": \"Chaco\",\n        \"dni\": 14307775,\n        \"licencia\": \"Profesional\",\n        \"telefono\": 34565050509\n    }\n}"
+						}
+					]
 				}
 			],
-			"id": "10c408a2-2a31-40f2-9490-61d4c662f41f"
+			"id": "9abfd78a-bdb3-4eaf-ab4b-c21d97c5f8c4",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "979084c6-a4a3-4e6c-b1e0-6743a971839a",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bdaec79-42d1-49bf-9d95-b81758924dc4",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "API Info",
