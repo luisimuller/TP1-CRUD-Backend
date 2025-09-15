@@ -1,0 +1,532 @@
+{
+	"info": {
+		"_postman_id": "187b54fd-051f-4cae-9cf3-27d07bd4dd6f",
+		"name": "API LogifLow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Facturacion",
+			"item": [
+				{
+					"name": "Get facturacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"// Verify that the response is an array\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(response).to.be.an('array');\r",
+									"});\r",
+									" const firstInvoice = response[0];\r",
+									"\r",
+									"// Test for the first invoice in the response\r",
+									"pm.test(\"First invoice has required properties\", function () {\r",
+									"    pm.expect(firstInvoice).to.have.property('id');\r",
+									"    pm.expect(firstInvoice).to.have.property('idEnvio');\r",
+									"    pm.expect(firstInvoice).to.have.property('fecha');\r",
+									"    pm.expect(firstInvoice).to.have.property('monto');\r",
+									"    pm.expect(firstInvoice).to.have.property('metodoPago');\r",
+									"    pm.expect(firstInvoice).to.have.property('envio');\r",
+									"})\r",
+									"    // Check the structure of the 'envio' object for the first invoice\r",
+									"pm.test(\"First invoice.envio has required properties\", function () {\r",
+									"    const envio = firstInvoice.envio;\r",
+									"    pm.expect(envio).to.have.property('id');\r",
+									"    pm.expect(envio).to.have.property('origen');\r",
+									"    pm.expect(envio).to.have.property('destino');\r",
+									"    pm.expect(envio).to.have.property('estado');\r",
+									"    pm.expect(envio).to.have.property('costo');\r",
+									"    pm.expect(envio).to.have.property('cliente');\r",
+									"})\r",
+									"\r",
+									"\r",
+									"pm.test(\"First invoice.envio.cliente has required properties\", function () {\r",
+									"    const cliente = firstInvoice.envio.cliente;\r",
+									"    pm.expect(cliente).to.have.property('id');\r",
+									"    pm.expect(cliente).to.have.property('nombre');\r",
+									"    pm.expect(cliente).to.have.property('razonSocial');\r",
+									"});\r",
+									"\r",
+									"pm.execution.setNextRequest(\"addfactura\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"id": "4c3cf2da-a36e-45ba-ad17-7982ead18d5d"
+							}
+						}
+					],
+					"id": "825b14eb-d095-4097-8c8d-4947f1169831",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/facturas"
+					},
+					"response": [
+						{
+							"id": "53c47767-0f4b-4704-aceb-fb7f4e799e0c",
+							"name": "Get facturacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/facturas"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "478"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1de-4gnXTnOVBdFb1KztC9NLJZewpzU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:59:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n    {\n        \"id\": 2,\n        \"idEnvio\": 2,\n        \"fecha\": \"2024-01-17\",\n        \"monto\": 1200,\n        \"metodoPago\": \"efectivo\",\n        \"envio\": {\n            \"id\": 2,\n            \"origen\": \"Rosario\",\n            \"destino\": \"Mendoza\",\n            \"estado\": \"en tránsito\",\n            \"costo\": 1200,\n            \"cliente\": {\n                \"id\": 2,\n                \"nombre\": \"Natalia\",\n                \"razonSocial\": \"Nati SA\"\n            }\n        }\n    },\n    {\n        \"id\": 3,\n        \"idEnvio\": 1,\n        \"fecha\": \"2025-09-13\",\n        \"monto\": \"90000\",\n        \"metodoPago\": \"Transferencia\",\n        \"envio\": {\n            \"id\": 1,\n            \"origen\": \"Buenos Aires\",\n            \"destino\": \"Córdoba\",\n            \"estado\": \"pendiente\",\n            \"costo\": 1500,\n            \"cliente\": {\n                \"id\": 1,\n                \"nombre\": \"Pepe\",\n                \"razonSocial\": \"Pepe SRL\"\n            }\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get factura by id",
+					"id": "37582098-ba97-4b7d-962c-996afb4e6bcf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/facturas/{{idNuevaFactura}}"
+					},
+					"response": [
+						{
+							"id": "2ac8a071-b8cd-4ea1-b048-4d46fbe62b08",
+							"name": "Get factura by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/facturas/3"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-WT8zwNhcj8jT5G+gM9iUzHuNB2Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:51:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": \"90000\",\n    \"metodoPago\": \"Transferencia\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update factura",
+					"id": "a35455a9-0d1b-4694-8448-95832ddbe870",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEnvio\":2,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"27000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/facturas/{{idNuevaFactura}}"
+					},
+					"response": [
+						{
+							"id": "4b3d6c9c-ef77-4c4d-ab28-9098e20fcbaa",
+							"name": "Update factura success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idEnvio\":1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"90000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/facturas/3"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-WT8zwNhcj8jT5G+gM9iUzHuNB2Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:50:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": \"90000\",\n    \"metodoPago\": \"Transferencia\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Patch factura",
+					"id": "f1e7635e-e69f-4eb0-99d2-ba1f043f4a23",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEnvio\":1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"90000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/facturas/3"
+					},
+					"response": [
+						{
+							"id": "cc901730-19f4-49e5-842a-802cd94dc36b",
+							"name": "Patch factura  success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idEnvio\":1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"90000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/facturas/3"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-WT8zwNhcj8jT5G+gM9iUzHuNB2Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:54:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": \"90000\",\n    \"metodoPago\": \"Transferencia\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "add factura",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8214d92b-9ca0-4b7c-9260-15d48c797bbd",
+								"exec": [
+									"pm.environment.set(\"idNuevaFactura\", pm.response.json().id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "519cd10c-cdad-4d81-919b-658330fe784a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEnvio\": 1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"73000\",\r\n    \"metodoPago\":\"Efectivo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/facturas/agregar"
+					},
+					"response": [
+						{
+							"id": "fe6cfc7f-9ee4-4e09-b2c1-676cc5575fcf",
+							"name": "Add factura",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idEnvio\": 1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"85000\",\r\n    \"metodoPago\":\"Efectivo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}/facturas/agregar"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "235"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"eb-mi459rBtNl4ZmD6n5qompj4S/i8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:49:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": 85000,\n    \"metodoPago\": \"Efectivo\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete factura",
+					"id": "c2dcd225-9a40-4ac5-9b57-d5c6e42b3a9f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{URL}}/facturas/3"
+					},
+					"response": [
+						{
+							"id": "96f09a3e-7a67-41bc-aec1-3d7864de8946",
+							"name": "Delete factura",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{URL}}/facturas/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f-HWg4eWwwgg4d5Dp8CevAlGi90VQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:49:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Factura eliminada\",\n    \"eliminado\": {\n        \"id\": 1,\n        \"idEnvio\": 1,\n        \"fecha\": \"2024-01-16\",\n        \"monto\": 1500,\n        \"metodoPago\": \"transferencia\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"id": "87dbf588-63fc-4809-9634-d88d4a42b643"
+		},
+		{
+			"name": "Clientes",
+			"item": [],
+			"id": "e8454747-396d-45d2-8b76-436ac5de90b7"
+		},
+		{
+			"name": "Envio",
+			"item": [],
+			"id": "f9c99d59-8f54-4e1b-8b99-d7155339c57f"
+		},
+		{
+			"name": "Chofer",
+			"item": [
+				{
+					"name": "Get Choferes",
+					"id": "f066860a-a832-40fa-b653-47e641da10a4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/choferes"
+					},
+					"response": []
+				}
+			],
+			"id": "10c408a2-2a31-40f2-9490-61d4c662f41f"
+		},
+		{
+			"name": "API Info",
+			"id": "91246b62-9fc1-411b-a35a-dfdaa136a00d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/"
+			},
+			"response": []
+		}
+	]
+}
