@@ -28,7 +28,7 @@ class ChoferModel {
         }
 
         const nuevoChofer = {
-            id: database.choferes.length + 1,
+            id: Math.max(database.choferes.map(chofer => chofer.id)),
             nombre,
             apellido,
             dni,
