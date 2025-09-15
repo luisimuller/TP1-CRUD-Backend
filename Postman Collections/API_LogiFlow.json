@@ -498,7 +498,20 @@
 		},
 		{
 			"name": "Chofer",
-			"item": [],
+			"item": [
+				{
+					"name": "Get Choferes",
+					"id": "f066860a-a832-40fa-b653-47e641da10a4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
 			"id": "10c408a2-2a31-40f2-9490-61d4c662f41f"
 		},
 		{
