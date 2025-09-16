@@ -601,7 +601,7 @@
 			"name": "Envio",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "GET envios",
 					"id": "31002605-ad99cb6c-4dd4-43b5-a95f-91bce1837e3e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
