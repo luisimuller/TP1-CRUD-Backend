@@ -493,7 +493,32 @@
 		},
 		{
 			"name": "Envio",
-			"item": [],
+			"item": [
+				{
+					"name": "GET envios",
+					"id": "ad99cb6c-4dd4-43b5-a95f-91bce1837e3e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET envio by id",
+					"id": "27e23b3b-6158-4001-a41b-4583514fa75d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
 			"id": "f9c99d59-8f54-4e1b-8b99-d7155339c57f"
 		},
 		{
