@@ -622,7 +622,21 @@
 						"method": "GET",
 						"header": []
 					},
-					"response": []
+					"response": [
+						{
+							"id": "31002605-8a87f421-a8ae-4f67-badd-a97950a521a9",
+							"name": "GET envio by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"responseTime": null,
+							"body": null
+						}
+					]
 				}
 			],
 			"id": "31002605-f9c99d59-8f54-4e1b-8b99-d7155339c57f"
