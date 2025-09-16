@@ -502,7 +502,8 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": "{{URL}}/envios"
 					},
 					"response": []
 				},
@@ -514,7 +515,8 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": "{{URL}}/envios/{{idEnvio}}"
 					},
 					"response": [
 						{
@@ -566,13 +568,36 @@
 				},
 				{
 					"name": "Add new envio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47eed8c1-c172-4b8e-8c7b-7255b0db5d07",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "362db606-8007-438b-86c7-28bb082d4da6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":3000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/envios/agregar"
 					},
 					"response": [
 						{
@@ -630,6 +655,30 @@
 							"body": "{\n    \"id\": 3,\n    \"idCliente\": 2,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Rosario\",\n    \"fechaEnvio\": \"2025-09-20\",\n    \"estado\": \"pendiente\",\n    \"costo\": 3000,\n    \"cliente\": {\n        \"id\": 2,\n        \"nombre\": \"Natalia\",\n        \"razonSocial\": \"Nati SA\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "Update envio",
+					"id": "435cf9e9-3fdb-4eb1-a36f-06c365236ddc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"id": "12e6d047-37dc-4108-9b33-6e625834055b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "f9c99d59-8f54-4e1b-8b99-d7155339c57f"
