@@ -813,10 +813,93 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/envios/{{idEnvio}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios",
+								"{{idEnvio}}"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"id": "31002605-5ad8bc7d-7f1d-4cc3-8fe4-64425aed45b7",
+							"name": "Update envio",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/envios/{{idEnvio}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"envios",
+										"{{idEnvio}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "328"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"148-CaGyumbHyFDe1lrzKt9E1XWWge8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Sep 2025 00:24:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 3,\n    \"idCliente\": 2,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Rosario\",\n    \"fechaEnvio\": \"2025-09-20\",\n    \"estado\": \"pendiente\",\n    \"costo\": 2800,\n    \"cliente\": {\n        \"id\": 2,\n        \"nombre\": \"Natalia\",\n        \"razonSocial\": \"Nati SA\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "New Request",
