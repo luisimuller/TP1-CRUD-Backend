@@ -608,7 +608,16 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/envios",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios"
+							]
+						}
 					},
 					"response": []
 				},
@@ -620,7 +629,17 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/envios/{{idEnvio}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios",
+								"{{idEnvio}}"
+							]
+						}
 					},
 					"response": [
 						{
@@ -681,13 +700,45 @@
 				},
 				{
 					"name": "Add new envio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47eed8c1-c172-4b8e-8c7b-7255b0db5d07",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-362db606-8007-438b-86c7-28bb082d4da6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":3000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/envios/agregar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios",
+								"agregar"
+							]
+						}
 					},
 					"response": [
 						{
