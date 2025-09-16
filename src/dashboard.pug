@@ -1,0 +1,23 @@
+extends layout
+
+block extraStyles 
+    link(rel="stylesheet", href="/styles/dashboard.css")
+
+block content
+
+    .dashboard
+    h1 Dashboard Logístico
+    h2 Bienvenido al panel de control
+
+    script(src="/scripts/dashboard.js")
+
+    .metrics
+      .metric
+        h3 Envíos activos
+        p#cant-envios Cargando...
+      .metric
+        h3 Vehículos disponibles
+        p#cant-vehiculos Cargando...
+      .metric
+        h3 Clientes registrados
+        p#cant-clientes Cargando...

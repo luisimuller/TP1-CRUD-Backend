@@ -4,17 +4,47 @@ const envioRoutes = require("./routes/envioRoutes");
 const choferRoutes = require("./routes/ChoferRoutes");
 const clienteRoutes = require("./routes/ClienteRoutes");
 const facturaRoutes = require("./routes/FacturaRoutes");
+const vehiculoRoutes = require("./routes/vehiculoRoutes");
 
 const app = express();
 const PORT = 3000;
+const path = require('path');
+
+//Directoria de recursos estaticos para front
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Pug Templates
+app.set('views','./src');
+app.set('view engine', 'pug');
 
 app.use(express.json());
+
+
 
 // Routes
 app.use("/envios", envioRoutes);
 app.use("/choferes", choferRoutes);
 app.use("/clientes", clienteRoutes);
 app.use("/facturas", facturaRoutes);
+app.use("/vehiculos", vehiculoRoutes);
+
+//Rutas HTML
+app.get('/index', function (req, res) {
+    res.render('index');
+});
+app.get('/dashboard', function (req, res) {
+    res.render('dashboard');
+});
+app.get('/flota', function (req, res) {
+    res.render('flota');
+});
+app.get('/choferes', function (req, res) {
+    res.render('choferes');
+});
+app.get('/facturas', function (req, res) {
+    res.render('facturas');
+});
+
 
 
 // Ruta principal
