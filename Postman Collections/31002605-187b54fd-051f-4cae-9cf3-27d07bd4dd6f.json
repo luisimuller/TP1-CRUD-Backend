@@ -678,6 +678,18 @@
 							"body": "{\n    \"id\": 1,\n    \"idCliente\": 1,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Córdoba\",\n    \"fechaEnvio\": \"2024-01-15\",\n    \"estado\": \"pendiente\",\n    \"costo\": 1500,\n    \"cliente\": {\n        \"id\": 1,\n        \"nombre\": \"Pepe\",\n        \"razonSocial\": \"Pepe SRL\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"id": "31002605-362db606-8007-438b-86c7-28bb082d4da6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "31002605-f9c99d59-8f54-4e1b-8b99-d7155339c57f"
