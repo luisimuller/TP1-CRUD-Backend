@@ -625,7 +625,7 @@
 					"response": [
 						{
 							"id": "31002605-89b26e32-b633-43ba-8791-ae97b4f78b4d",
-							"name": "Get envio by id successfull",
+							"name": "Get envio by id successful",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
