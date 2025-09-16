@@ -611,6 +611,18 @@
 						"header": []
 					},
 					"response": []
+				},
+				{
+					"name": "GET envio by id",
+					"id": "31002605-27e23b3b-6158-4001-a41b-4583514fa75d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "31002605-f9c99d59-8f54-4e1b-8b99-d7155339c57f"
