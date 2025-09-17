@@ -1,0 +1,1692 @@
+{
+	"info": {
+		"_postman_id": "66ea7cef-6e1e-4c1a-9541-d3158aa4e449",
+		"name": "API LogifLow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48422489",
+		"_collection_link": "https://dragonesmagicos-694629.postman.co/workspace/Adrian's-Workspace~0f0e5860-3094-4c1e-850a-aa655c82f7e8/collection/48422489-66ea7cef-6e1e-4c1a-9541-d3158aa4e449?action=share&source=collection_link&creator=48422489"
+	},
+	"item": [
+		{
+			"name": "Facturacion",
+			"item": [
+				{
+					"name": "Get facturacion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"// Verify that the response is an array\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(response).to.be.an('array');\r",
+									"});\r",
+									" const firstInvoice = response[0];\r",
+									"\r",
+									"// Test for the first invoice in the response\r",
+									"pm.test(\"First invoice has required properties\", function () {\r",
+									"    pm.expect(firstInvoice).to.have.property('id');\r",
+									"    pm.expect(firstInvoice).to.have.property('idEnvio');\r",
+									"    pm.expect(firstInvoice).to.have.property('fecha');\r",
+									"    pm.expect(firstInvoice).to.have.property('monto');\r",
+									"    pm.expect(firstInvoice).to.have.property('metodoPago');\r",
+									"    pm.expect(firstInvoice).to.have.property('envio');\r",
+									"})\r",
+									"    // Check the structure of the 'envio' object for the first invoice\r",
+									"pm.test(\"First invoice.envio has required properties\", function () {\r",
+									"    const envio = firstInvoice.envio;\r",
+									"    pm.expect(envio).to.have.property('id');\r",
+									"    pm.expect(envio).to.have.property('origen');\r",
+									"    pm.expect(envio).to.have.property('destino');\r",
+									"    pm.expect(envio).to.have.property('estado');\r",
+									"    pm.expect(envio).to.have.property('costo');\r",
+									"    pm.expect(envio).to.have.property('cliente');\r",
+									"})\r",
+									"\r",
+									"\r",
+									"pm.test(\"First invoice.envio.cliente has required properties\", function () {\r",
+									"    const cliente = firstInvoice.envio.cliente;\r",
+									"    pm.expect(cliente).to.have.property('id');\r",
+									"    pm.expect(cliente).to.have.property('nombre');\r",
+									"    pm.expect(cliente).to.have.property('razonSocial');\r",
+									"});\r",
+									"\r",
+									"pm.execution.setNextRequest(\"addfactura\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/facturas",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"facturas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get facturacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/facturas",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"facturas"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "478"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1de-4gnXTnOVBdFb1KztC9NLJZewpzU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:59:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"idEnvio\": 2,\n        \"fecha\": \"2024-01-17\",\n        \"monto\": 1200,\n        \"metodoPago\": \"efectivo\",\n        \"envio\": {\n            \"id\": 2,\n            \"origen\": \"Rosario\",\n            \"destino\": \"Mendoza\",\n            \"estado\": \"en tránsito\",\n            \"costo\": 1200,\n            \"cliente\": {\n                \"id\": 2,\n                \"nombre\": \"Natalia\",\n                \"razonSocial\": \"Nati SA\"\n            }\n        }\n    },\n    {\n        \"id\": 3,\n        \"idEnvio\": 1,\n        \"fecha\": \"2025-09-13\",\n        \"monto\": \"90000\",\n        \"metodoPago\": \"Transferencia\",\n        \"envio\": {\n            \"id\": 1,\n            \"origen\": \"Buenos Aires\",\n            \"destino\": \"Córdoba\",\n            \"estado\": \"pendiente\",\n            \"costo\": 1500,\n            \"cliente\": {\n                \"id\": 1,\n                \"nombre\": \"Pepe\",\n                \"razonSocial\": \"Pepe SRL\"\n            }\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get factura by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/facturas/{{idNuevaFactura}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"facturas",
+								"{{idNuevaFactura}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get factura by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/facturas/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"facturas",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-WT8zwNhcj8jT5G+gM9iUzHuNB2Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:51:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": \"90000\",\n    \"metodoPago\": \"Transferencia\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update factura",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEnvio\":2,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"27000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/facturas/{{idNuevaFactura}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"facturas",
+								"{{idNuevaFactura}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update factura success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idEnvio\":1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"90000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/facturas/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"facturas",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-WT8zwNhcj8jT5G+gM9iUzHuNB2Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:50:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": \"90000\",\n    \"metodoPago\": \"Transferencia\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Patch factura",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEnvio\":1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"90000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/facturas/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"facturas",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Patch factura  success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idEnvio\":1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"90000\",\r\n    \"metodoPago\":\"Transferencia\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/facturas/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"facturas",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-WT8zwNhcj8jT5G+gM9iUzHuNB2Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:54:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": \"90000\",\n    \"metodoPago\": \"Transferencia\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "add factura",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"idNuevaFactura\", pm.response.json().id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEnvio\": 1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"73000\",\r\n    \"metodoPago\":\"Efectivo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/facturas/agregar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"facturas",
+								"agregar"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add factura",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idEnvio\": 1,\r\n    \"fecha\": \"2025-09-13\",\r\n    \"monto\" : \"85000\",\r\n    \"metodoPago\":\"Efectivo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/facturas/agregar",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"facturas",
+										"agregar"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "235"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"eb-mi459rBtNl4ZmD6n5qompj4S/i8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:49:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"idEnvio\": 1,\n    \"fecha\": \"2025-09-13\",\n    \"monto\": 85000,\n    \"metodoPago\": \"Efectivo\",\n    \"envio\": {\n        \"id\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete factura",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/facturas/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"facturas",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete factura",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/facturas/1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"facturas",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f-HWg4eWwwgg4d5Dp8CevAlGi90VQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 13 Sep 2025 17:49:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Factura eliminada\",\n    \"eliminado\": {\n        \"id\": 1,\n        \"idEnvio\": 1,\n        \"fecha\": \"2024-01-16\",\n        \"monto\": 1500,\n        \"metodoPago\": \"transferencia\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Get Cliente",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cliente by Id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Add Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"María\",\r\n  \"apellido\": \"Fernández\",\r\n  \"razonSocial\": \"Panadería Fernández\",\r\n  \"direccion\": \"Calle 9 de Julio 100\",\r\n  \"telefono\": \"1122334455\",\r\n  \"mail\": \"maria@panaderia.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/Clientes/agregar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"Clientes",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Cliente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"telefono\": \"555123456\",\r\n  \"mail\": \"nuevoemail@cliente.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/choferes/{{idCliente}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes",
+								"{{idCliente}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Lucía\",\r\n  \"apellido\": \"Martínez\",\r\n  \"razonSocial\": \"Consultora Martínez\",\r\n  \"direccion\": \"Av. Libertad 456\",\r\n  \"telefono\": \"444555666\",\r\n  \"mail\": \"lucia@consultora.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/choferes/{{idCliente}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes",
+								"{{idCliente}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/Clientes/{{idCliente}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"Clientes",
+								"{{idCliente}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Envio",
+			"item": [
+				{
+					"name": "GET envios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/envios",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET envio by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/envios/{{idEnvio}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios",
+								"{{idEnvio}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get envio by id successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/envios/{{idEnvio}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"envios",
+										"{{idEnvio}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "327"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"147-crDlf+bGhVBW+m5FT2pVGbxKg08\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Sep 2025 00:09:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"idCliente\": 1,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Córdoba\",\n    \"fechaEnvio\": \"2024-01-15\",\n    \"estado\": \"pendiente\",\n    \"costo\": 1500,\n    \"cliente\": {\n        \"id\": 1,\n        \"nombre\": \"Pepe\",\n        \"razonSocial\": \"Pepe SRL\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add new envio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":3000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/envios/agregar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios",
+								"agregar"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add new envío",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":3000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/envios/agregar",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"envios",
+										"agregar"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "328"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"148-A5b+SmUionVTwzy+tKUl6x94m+k\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Sep 2025 00:20:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"idCliente\": 2,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Rosario\",\n    \"fechaEnvio\": \"2025-09-20\",\n    \"estado\": \"pendiente\",\n    \"costo\": 3000,\n    \"cliente\": {\n        \"id\": 2,\n        \"nombre\": \"Natalia\",\n        \"razonSocial\": \"Nati SA\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update envio",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/envios/{{idEnvio}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios",
+								"{{idEnvio}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update envio",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/envios/{{idEnvio}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"envios",
+										"{{idEnvio}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "328"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"148-CaGyumbHyFDe1lrzKt9E1XWWge8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Sep 2025 00:24:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"idCliente\": 2,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Rosario\",\n    \"fechaEnvio\": \"2025-09-20\",\n    \"estado\": \"pendiente\",\n    \"costo\": 2800,\n    \"cliente\": {\n        \"id\": 2,\n        \"nombre\": \"Natalia\",\n        \"razonSocial\": \"Nati SA\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chofer",
+			"item": [
+				{
+					"name": "Get Choferes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Add Chofer\");",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/choferes",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Choferes Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/choferes",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"choferes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "228"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e4-SiZ1AkkPyQOdQ8JX8VmUjFr3JR4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:19:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\",\n        \"dni\": \"30123456\",\n        \"licencia\": \"Profesional\",\n        \"telefono\": \"111222333\"\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"Laura\",\n        \"apellido\": \"Rodríguez\",\n        \"dni\": \"28987654\",\n        \"licencia\": \"Profesional\",\n        \"telefono\": \"444555666\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 201\", function () {",
+									"    pm.expect(pm.response.code).to.eql(201);",
+									"});",
+									"",
+									"pm.test(\"Response devuelve un nuevo Chofer\", function(){",
+									"    pm.expect(pm.response.json()).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.environment.set(\"idChofer\", pm.response.json().id);",
+									"",
+									"pm.execution.setNextRequest(\"get Chofer by Id\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/choferes/agregar",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes",
+								"agregar"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Chofer Successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/choferes/agregar",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"choferes",
+										"agregar"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-zIPkFrLv3ugj/GZ0uXrY1yqHFTY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:23:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565000289\n}"
+						},
+						{
+							"name": "Chofer ya existe Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/choferes/agregar",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"choferes",
+										"agregar"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-QDl3wbz9hUAU+ommsuJukMPohzg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 20:31:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ya existe un chofer con este DNI\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Chofer by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Update Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/choferes/{{idChofer}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes",
+								"{{idChofer}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Chofer by Id Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/choferes/{{idChofer}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"choferes",
+										"{{idChofer}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-zIPkFrLv3ugj/GZ0uXrY1yqHFTY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:29:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565000289\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Patch Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/choferes/{{idChofer}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes",
+								"{{idChofer}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Chofer Successful",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/choferes/{{idChofer}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"choferes",
+										"{{idChofer}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-S9zV4AMoqm+R7Iw0f4Qug7mHqN0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:31:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565050509\n}"
+						}
+					]
+				},
+				{
+					"name": "Patch Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Delete Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/choferes/{{idChofer}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes",
+								"{{idChofer}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Patch Chofer Successful",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/choferes/{{idChofer}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"choferes",
+										"{{idChofer}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-S9zV4AMoqm+R7Iw0f4Qug7mHqN0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:31:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565050509\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response tiene el mensaje de Chofer eliminado\", function () {\r",
+									"    pm.expect(pm.response.json().message).to.eql(\"Chofer eliminado\");\r",
+									"})\r",
+									"\r",
+									"pm.environment.set(\"idChofer\",\"\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/choferes/{{idChofer}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"choferes",
+								"{{idChofer}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Chofer Successful",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "/choferes/3",
+									"path": [
+										"choferes",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-cgEr+K4Z6T989dDjev6IsDRkhcw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Sep 2025 19:36:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Chofer eliminado\",\n    \"eliminado\": {\n        \"id\": 3,\n        \"nombre\": \"Juan Carlos\",\n        \"apellido\": \"Chaco\",\n        \"dni\": 14307775,\n        \"licencia\": \"Profesional\",\n        \"telefono\": 34565050509\n    }\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "API Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
