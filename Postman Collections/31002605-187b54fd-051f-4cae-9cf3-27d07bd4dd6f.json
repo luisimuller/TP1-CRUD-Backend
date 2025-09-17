@@ -664,6 +664,18 @@
 							"body": "[\n    {\n        \"id\": 1,\n        \"nombre\": \"Pepe\",\n        \"apellido\": \"Gómez\",\n        \"razonSocial\": \"Pepe SRL\",\n        \"direccion\": \"Calle 123\",\n        \"telefono\": \"123456789\",\n        \"mail\": \"pepe@mail.com\"\n    },\n    {\n        \"id\": 2,\n        \"nombre\": \"Natalia\",\n        \"apellido\": \"López\",\n        \"razonSocial\": \"Nati SA\",\n        \"direccion\": \"Av. Siempre 456\",\n        \"telefono\": \"987654321\",\n        \"mail\": \"natalia@mail.com\"\n    }\n]"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"id": "31002605-101e6c3a-de35-49bf-b67a-98d97edac57f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "31002605-e8454747-396d-45d2-8b76-436ac5de90b7"
