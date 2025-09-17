@@ -488,7 +488,20 @@
 		},
 		{
 			"name": "Clientes",
-			"item": [],
+			"item": [
+				{
+					"name": "GET Clientes",
+					"id": "625c6db1-d7b7-43f1-b76b-172113e8408d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
 			"id": "e8454747-396d-45d2-8b76-436ac5de90b7"
 		},
 		{
@@ -883,6 +896,21 @@
 				},
 				{
 					"name": "Patch envio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c2d4a8ab-767f-40f5-8aff-ead08bd70c6b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "12e6d047-37dc-4108-9b33-6e625834055b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
