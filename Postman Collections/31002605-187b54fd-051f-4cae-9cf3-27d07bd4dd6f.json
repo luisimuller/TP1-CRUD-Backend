@@ -908,8 +908,27 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2400\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/envios/{{idEnvio}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"envios",
+								"{{idEnvio}}"
+							]
+						}
 					},
 					"response": []
 				}
