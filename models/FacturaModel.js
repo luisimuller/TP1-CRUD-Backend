@@ -39,7 +39,7 @@ class FacturaModel {
         }
 
         const nuevaFactura = {
-            id: database.facturas.length + 1,
+            id: Math.max(...database.facturas.map(f => f.id)) + 1,
             idEnvio,
             fecha,
             monto: parseFloat(monto),
