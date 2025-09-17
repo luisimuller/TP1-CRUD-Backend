@@ -696,6 +696,23 @@
 				},
 				{
 					"name": "GET envio by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6a52d86-1033-414e-ad92-f0dbf0a13494",
+								"exec": [
+									"pm.test(\"Response status codeis 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Update envio\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-27e23b3b-6158-4001-a41b-4583514fa75d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
