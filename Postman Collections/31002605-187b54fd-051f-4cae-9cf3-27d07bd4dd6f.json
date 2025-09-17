@@ -611,6 +611,9 @@
 									"pm.test(\"Response status codeis 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"    });\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Add new envio\");\r",
+									"\r",
 									"    "
 								],
 								"type": "text/javascript",
