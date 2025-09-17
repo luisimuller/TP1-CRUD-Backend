@@ -433,7 +433,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "{{URL}}/facturas/3"
+						"url": "{{URL}}/facturas/1"
 					},
 					"response": [
 						{
