@@ -602,6 +602,22 @@
 			"item": [
 				{
 					"name": "GET envios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "467e8d2e-ef06-4289-9b33-8192c75589c0",
+								"exec": [
+									"pm.test(\"Response status codeis 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    });\r",
+									"    "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-ad99cb6c-4dd4-43b5-a95f-91bce1837e3e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -933,7 +949,7 @@
 					"response": [
 						{
 							"id": "31002605-02e908c5-34da-40ff-b5f5-1dfd91536795",
-							"name": "New Request",
+							"name": "Patch envio",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [],
