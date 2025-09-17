@@ -27,8 +27,13 @@ class ChoferModel {
             throw new Error("Ya existe un chofer con este DNI");
         }
 
+        // Generar un id único y consecutivo
+        let nuevoId = 1;
+        if (database.choferes.length > 0) {
+            nuevoId = Math.max(...database.choferes.map(chofer => chofer.id)) + 1;
+        }
         const nuevoChofer = {
-            id: Math.max(database.choferes.map(chofer => chofer.id)),
+            id: nuevoId,
             nombre,
             apellido,
             dni,

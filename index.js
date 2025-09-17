@@ -6,24 +6,33 @@ const clienteRoutes = require("./routes/ClienteRoutes");
 const facturaRoutes = require("./routes/FacturaRoutes");
 const vehiculoRoutes = require("./routes/vehiculoRoutes");
 
+
 const app = express();
 const PORT = 3000;
 const path = require('path');
 
+app.use(express.json());
+
 //Directoria de recursos estaticos para front
+
+const ChoferModel = require('./models/ChoferModel');
+// Ruta para ver choferes con formato
+app.get('/choferes', function (req, res) {
+    const choferes = ChoferModel.getChoferes();
+    res.render('choferes', { choferes });
+});
+app.use('/choferes', choferRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Pug Templates
 app.set('views','./src');
 app.set('view engine', 'pug');
 
-app.use(express.json());
-
 
 
 // Routes
 app.use("/envios", envioRoutes);
-app.use("/choferes", choferRoutes);
+
 app.use("/clientes", clienteRoutes);
 app.use("/facturas", facturaRoutes);
 app.use("/vehiculos", vehiculoRoutes);
@@ -38,9 +47,7 @@ app.get('/dashboard', function (req, res) {
 app.get('/flota', function (req, res) {
     res.render('flota');
 });
-app.get('/choferes', function (req, res) {
-    res.render('choferes');
-});
+
 app.get('/facturas', function (req, res) {
     res.render('facturas');
 });

@@ -1,0 +1,44 @@
+extends layout
+block content
+  h1 Choferes
+  link(rel="stylesheet", href="/styles/choferes.css")
+  // Modal para agregar chofer
+  .modal#modalAgregarChofer(style="display:none;")
+    .modal-content
+      form#formAgregarChofer
+        h2 Agregar chofer
+        input(type="text", name="nombre", placeholder="Nombre", required)
+        input(type="text", name="apellido", placeholder="Apellido", required)
+        input(type="text", name="dni", placeholder="DNI", required)
+        input(type="text", name="licencia", placeholder="Licencia", required)
+        input(type="text", name="telefono", placeholder="Teléfono", required)
+        .modal-actions
+          button(type="submit") Guardar
+          button(type="button", id="btnCancelarAgregar") Cancelar
+  // Modal para editar chofer
+  .modal#modalEditarChofer(style="display:none;")
+    .modal-content
+      form#formEditarChofer
+        h2 Modificar chofer
+        input(type="hidden", name="id")
+        input(type="text", name="nombre", placeholder="Nombre", required)
+        input(type="text", name="apellido", placeholder="Apellido", required)
+        input(type="text", name="dni", placeholder="DNI", required)
+        input(type="text", name="licencia", placeholder="Licencia", required)
+        input(type="text", name="telefono", placeholder="Teléfono", required)
+        .modal-actions
+          button(type="submit") Guardar cambios
+          button(type="button", id="btnCancelarEditar") Cancelar
+  button#btnMostrarFormAgregar.btn-fab(type="button") Agregar chofer
+  ul.chofer-list
+    each chofer in choferes
+      li.chofer-item(data-id=chofer.id data-dni=chofer.dni data-telefono=chofer.telefono)
+        .chofer-nombre Nombre: #{chofer.nombre}
+        .chofer-apellido Apellido: #{chofer.apellido}
+        .chofer-dni DNI: #{chofer.dni}
+        .chofer-licencia Licencia: #{chofer.licencia}
+        .chofer-telefono Teléfono: #{chofer.telefono}
+        button.btn-modificar(type="button") Modificar
+        button.btn-eliminar(type="button") Eliminar
+  script(src="/scripts/choferes.js")
+  script(src="/scripts/choferes_mod.js")
