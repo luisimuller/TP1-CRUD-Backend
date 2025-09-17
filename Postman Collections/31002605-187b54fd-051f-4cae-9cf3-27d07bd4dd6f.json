@@ -1065,6 +1065,18 @@
 							"body": "{\n    \"id\": 3,\n    \"idCliente\": 2,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Rosario\",\n    \"fechaEnvio\": \"2025-09-20\",\n    \"estado\": \"pendiente\",\n    \"costo\": 2400,\n    \"cliente\": {\n        \"id\": 2,\n        \"nombre\": \"Natalia\",\n        \"razonSocial\": \"Nati SA\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"id": "31002605-2d1d55ee-6f48-4f47-a9ec-8b4e573c234b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "31002605-f9c99d59-8f54-4e1b-8b99-d7155339c57f"
