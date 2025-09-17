@@ -596,7 +596,7 @@
 			"name": "Clientes",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "GET Clientes",
 					"id": "31002605-625c6db1-d7b7-43f1-b76b-172113e8408d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
