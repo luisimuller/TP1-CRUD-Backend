@@ -1076,7 +1076,66 @@
 						"method": "GET",
 						"header": []
 					},
-					"response": []
+					"response": [
+						{
+							"id": "31002605-c713195a-904c-4c46-84b4-3872198d87fe",
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/envios/{{idEnvio}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"envios",
+										"{{idEnvio}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "197"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c5-uW2UVdEGThfcLk/yJ7poCEnPZQQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 19:45:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Envío eliminado\",\n    \"eliminado\": {\n        \"id\": 3,\n        \"idCliente\": 2,\n        \"idVehiculo\": 1,\n        \"idChofer\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Rosario\",\n        \"fechaEnvio\": \"2025-09-20\",\n        \"estado\": \"pendiente\",\n        \"costo\": 2400\n    }\n}"
+						}
+					]
 				}
 			],
 			"id": "31002605-f9c99d59-8f54-4e1b-8b99-d7155339c57f"
