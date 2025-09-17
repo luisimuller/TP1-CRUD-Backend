@@ -574,6 +574,23 @@
 				},
 				{
 					"name": "GET envio by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6a52d86-1033-414e-ad92-f0dbf0a13494",
+								"exec": [
+									"pm.test(\"Response status codeis 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Update envio\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "27e23b3b-6158-4001-a41b-4583514fa75d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -684,6 +701,11 @@
 							"script": {
 								"id": "47eed8c1-c172-4b8e-8c7b-7255b0db5d07",
 								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(201);\r",
+									"});\r",
+									"\r",
+									"pm.execution.setNextRequest(\"GET envio by id\");\r",
 									""
 								],
 								"type": "text/javascript",
@@ -768,6 +790,22 @@
 				},
 				{
 					"name": "Update envio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cde118b-88d6-4a43-b74f-aa32b72710a3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"pm.execution.setNextRequest(\"Patch envio\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "435cf9e9-3fdb-4eb1-a36f-06c365236ddc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
