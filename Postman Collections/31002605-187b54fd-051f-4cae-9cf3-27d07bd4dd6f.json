@@ -522,13 +522,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/facturas/3",
+							"raw": "{{URL}}/facturas/1",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"facturas",
-								"3"
+								"1"
 							]
 						}
 					},
