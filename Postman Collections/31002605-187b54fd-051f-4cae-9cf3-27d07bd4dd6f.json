@@ -666,7 +666,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "GET cliente by id",
 					"id": "31002605-101e6c3a-de35-49bf-b67a-98d97edac57f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
