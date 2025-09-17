@@ -768,6 +768,60 @@
 							"cookie": [],
 							"responseTime": null,
 							"body": "{\n    \"id\": 1,\n    \"idCliente\": 1,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Córdoba\",\n    \"fechaEnvio\": \"2024-01-15\",\n    \"estado\": \"pendiente\",\n    \"costo\": 1500,\n    \"cliente\": {\n        \"id\": 1,\n        \"nombre\": \"Pepe\",\n        \"razonSocial\": \"Pepe SRL\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
+						},
+						{
+							"id": "31002605-6c7fb680-f233-48a1-b448-fbd632ca6869",
+							"name": "GET envio by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/envios/{{idEnvio}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"envios",
+										"{{idEnvio}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-fPMx7099llqazydzbJyC/xYUibE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 19:52:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Envío no encontrado\"\n}"
 						}
 					]
 				},
