@@ -1067,7 +1067,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "Delete envios",
 					"id": "31002605-2d1d55ee-6f48-4f47-a9ec-8b4e573c234b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
