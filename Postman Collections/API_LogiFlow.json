@@ -521,7 +521,53 @@
 						"header": [],
 						"url": "{{URL}}/envios"
 					},
-					"response": []
+					"response": [
+						{
+							"id": "f365db81-e2ad-463a-b99a-fcc24aa250f1",
+							"name": "GET envios",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/envios"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "988"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3dc-Y8lePzgRddrvZpxkWDowlx+ydhk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 19:44:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n    {\n        \"id\": 1,\n        \"idCliente\": 1,\n        \"idVehiculo\": 1,\n        \"idChofer\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Córdoba\",\n        \"fechaEnvio\": \"2024-01-15\",\n        \"estado\": \"pendiente\",\n        \"costo\": 1500,\n        \"cliente\": {\n            \"id\": 1,\n            \"nombre\": \"Pepe\",\n            \"razonSocial\": \"Pepe SRL\"\n        },\n        \"vehiculo\": {\n            \"id\": 1,\n            \"patente\": \"ABC123\",\n            \"tipo\": \"camión\"\n        },\n        \"chofer\": {\n            \"id\": 1,\n            \"nombre\": \"Carlos\",\n            \"apellido\": \"Pérez\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"idCliente\": 2,\n        \"idVehiculo\": 2,\n        \"idChofer\": 2,\n        \"origen\": \"Rosario\",\n        \"destino\": \"Mendoza\",\n        \"fechaEnvio\": \"2024-01-16\",\n        \"estado\": \"en tránsito\",\n        \"costo\": 1200,\n        \"cliente\": {\n            \"id\": 2,\n            \"nombre\": \"Natalia\",\n            \"razonSocial\": \"Nati SA\"\n        },\n        \"vehiculo\": {\n            \"id\": 2,\n            \"patente\": \"DEF456\",\n            \"tipo\": \"furgón\"\n        },\n        \"chofer\": {\n            \"id\": 2,\n            \"nombre\": \"Laura\",\n            \"apellido\": \"Rodríguez\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"idCliente\": 2,\n        \"idVehiculo\": 1,\n        \"idChofer\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Rosario\",\n        \"fechaEnvio\": \"2025-09-20\",\n        \"estado\": \"pendiente\",\n        \"costo\": 2400,\n        \"cliente\": {\n            \"id\": 2,\n            \"nombre\": \"Natalia\",\n            \"razonSocial\": \"Nati SA\"\n        },\n        \"vehiculo\": {\n            \"id\": 1,\n            \"patente\": \"ABC123\",\n            \"tipo\": \"camión\"\n        },\n        \"chofer\": {\n            \"id\": 1,\n            \"nombre\": \"Carlos\",\n            \"apellido\": \"Pérez\"\n        }\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "GET envio by id",
@@ -823,6 +869,73 @@
 							"cookie": [],
 							"responseTime": null,
 							"body": "{\n    \"id\": 3,\n    \"idCliente\": 2,\n    \"idVehiculo\": 1,\n    \"idChofer\": 1,\n    \"origen\": \"Buenos Aires\",\n    \"destino\": \"Rosario\",\n    \"fechaEnvio\": \"2025-09-20\",\n    \"estado\": \"pendiente\",\n    \"costo\": 2400,\n    \"cliente\": {\n        \"id\": 2,\n        \"nombre\": \"Natalia\",\n        \"razonSocial\": \"Nati SA\"\n    },\n    \"vehiculo\": {\n        \"id\": 1,\n        \"patente\": \"ABC123\",\n        \"tipo\": \"camión\"\n    },\n    \"chofer\": {\n        \"id\": 1,\n        \"nombre\": \"Carlos\",\n        \"apellido\": \"Pérez\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete envios",
+					"id": "2d1d55ee-6f48-4f47-a9ec-8b4e573c234b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}"
+						},
+						"url": "{{URL}}/envios/{{idEnvio}}"
+					},
+					"response": [
+						{
+							"id": "c713195a-904c-4c46-84b4-3872198d87fe",
+							"name": "Delete envios",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}"
+								},
+								"url": "{{URL}}/envios/{{idEnvio}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "197"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c5-uW2UVdEGThfcLk/yJ7poCEnPZQQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 17 Sep 2025 19:45:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Envío eliminado\",\n    \"eliminado\": {\n        \"id\": 3,\n        \"idCliente\": 2,\n        \"idVehiculo\": 1,\n        \"idChofer\": 1,\n        \"origen\": \"Buenos Aires\",\n        \"destino\": \"Rosario\",\n        \"fechaEnvio\": \"2025-09-20\",\n        \"estado\": \"pendiente\",\n        \"costo\": 2400\n    }\n}"
 						}
 					]
 				}
@@ -1190,7 +1303,7 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "PATCH",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1286,7 +1399,7 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
