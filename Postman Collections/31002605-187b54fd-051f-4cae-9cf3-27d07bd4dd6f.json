@@ -850,6 +850,11 @@
 							"script": {
 								"id": "47eed8c1-c172-4b8e-8c7b-7255b0db5d07",
 								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(201);\r",
+									"});\r",
+									"\r",
+									"pm.execution.setNextRequest(\"GET envio by id\");\r",
 									""
 								],
 								"type": "text/javascript",
@@ -952,6 +957,22 @@
 				},
 				{
 					"name": "Update envio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cde118b-88d6-4a43-b74f-aa32b72710a3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"pm.execution.setNextRequest(\"Patch envio\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-435cf9e9-3fdb-4eb1-a36f-06c365236ddc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
