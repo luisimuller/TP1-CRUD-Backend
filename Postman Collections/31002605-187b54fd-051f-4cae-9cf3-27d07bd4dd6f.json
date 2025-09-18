@@ -1008,7 +1008,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "Patch Cliente",
 					"id": "31002605-b9c6436b-a784-485e-b804-30f22c5da8c0",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
