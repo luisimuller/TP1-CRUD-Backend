@@ -899,18 +899,52 @@
 				},
 				{
 					"name": "Update cliente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9526873-6a5b-4b02-bf88-8b9860c5d9c0",
+								"exec": [
+									"    pm.test(\"Status code is 201\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(201);\r",
+									"    });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-8c812dfe-468f-4b5d-9faa-3153ff2f6f50",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"nombre\": \"Norma\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clientes/{{idCliente}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clientes",
+								"{{idCliente}}"
+							]
+						}
 					},
 					"response": [
 						{
 							"id": "31002605-4f52716f-44f1-4253-b780-fa968f2d3f7e",
-							"name": "New Request",
+							"name": "Update cliente successfully",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
