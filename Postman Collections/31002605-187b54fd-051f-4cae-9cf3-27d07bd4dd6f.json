@@ -898,7 +898,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "Update cliente",
 					"id": "31002605-8c812dfe-468f-4b5d-9faa-3153ff2f6f50",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
