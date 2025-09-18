@@ -29,7 +29,7 @@ class EnvioModel {
         }
 
         const nuevoEnvio = {
-            id: database.envios.length + 1,
+            id: Math.max(...database.envios.map(e => e.id)) + 1,
             idCliente,
             idVehiculo,
             idChofer,

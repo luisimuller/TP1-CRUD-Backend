@@ -15,7 +15,7 @@ class ClienteModel {
     // Agregar nuevo
     addCliente(clienteData) {
         const nuevoCliente = {
-            id: database.clientes.length + 1,
+            id: Math.max(...database.clientes.map(c => c.id)) + 1,
             nombre: clienteData.nombre,
             apellido: clienteData.apellido,
             razonSocial: clienteData.razonSocial,
