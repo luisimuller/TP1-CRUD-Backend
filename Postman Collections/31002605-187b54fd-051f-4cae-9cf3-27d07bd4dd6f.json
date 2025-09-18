@@ -834,7 +834,7 @@
 					"response": [
 						{
 							"id": "31002605-c4d211a4-1c87-4626-9a14-2745bacdebe9",
-							"name": "New Request",
+							"name": "Add new cliente successfully",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
