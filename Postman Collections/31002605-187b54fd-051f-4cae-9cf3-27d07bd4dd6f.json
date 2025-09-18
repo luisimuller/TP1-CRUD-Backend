@@ -1051,7 +1051,71 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"id": "31002605-0abe10f3-dfa9-47d1-ba91-b8654a560b9c",
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n        \"nombre\": \"Alicia\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/clientes/{{idCliente}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"clientes",
+										"{{idCliente}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9b-vZN7ClCX0ju3UKfRa9G4Jv9cRNw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 19:29:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"id\": 1,\n    \"nombre\": \"Alicia\",\n    \"apellido\": \"Leandro\",\n    \"razonSocial\": \"Actrices SRL\",\n    \"direccion\": \"Calle 789\",\n    \"telefono\": \"123456789\",\n    \"mail\": \"Norma_leandro@mail.com\"\n}"
+						}
+					]
 				}
 			],
 			"id": "31002605-e8454747-396d-45d2-8b76-436ac5de90b7"
