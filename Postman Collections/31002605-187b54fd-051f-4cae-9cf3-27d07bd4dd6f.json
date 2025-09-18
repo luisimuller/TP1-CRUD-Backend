@@ -678,7 +678,7 @@
 					"response": [
 						{
 							"id": "31002605-d8e18c3a-482c-44c4-9080-76ddf7dd4844",
-							"name": "New Request",
+							"name": "GET Cliente by id succsessfull",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
