@@ -896,6 +896,18 @@
 							"body": "{\n    \"id\": 4,\n    \"nombre\": \"Esteban\",\n    \"apellido\": \"Quito\",\n    \"razonSocial\": \"Banquitos SRL\",\n    \"direccion\": \"Calle 456\",\n    \"telefono\": \"987654321\",\n    \"mail\": \"bancos_esteban@mail.com\"\n}"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"id": "31002605-8c812dfe-468f-4b5d-9faa-3153ff2f6f50",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "31002605-e8454747-396d-45d2-8b76-436ac5de90b7"
