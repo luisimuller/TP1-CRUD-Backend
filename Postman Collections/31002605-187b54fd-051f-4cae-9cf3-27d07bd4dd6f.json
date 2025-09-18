@@ -795,9 +795,16 @@
 							"script": {
 								"id": "3e9ba561-339a-4ca9-930c-b88c32d1ec24",
 								"exec": [
-									"    pm.test(\"Status code is 201\", function () {\r",
-									"        pm.expect(pm.response.code).to.equal(201);\r",
-									"    });"
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(201);\r",
+									"});\r",
+									"pm.test(\"Response devuelve un nuevo Cliente\", function () {\r",
+									"    pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"idCliente\", pm.response.json().id);\r",
+									"\r",
+									"pm.execution.setNextRequest(\"get cliente by Id\");"
 								],
 								"type": "text/javascript",
 								"packages": {}
