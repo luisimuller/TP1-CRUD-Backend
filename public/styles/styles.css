@@ -1,109 +1,126 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f4f6f8;
   color: #333;
 }
 
+/* Header con degradado */
 header {
-  background-color: #004080;
+  background: linear-gradient(135deg, #003366, #0056b3);
   color: white;
-  padding: 1rem 2rem;
-}
-
-/* Título principal */
-h1 {
-  font-size: 2.8rem;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
+  padding: 2rem 2rem 1.5rem;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-/* Subtítulo */
-h2 {
-  font-size: 1.6rem;
-  color: #666;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.navbar {
+/* Header general */
+.header-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* logo izquierda, nav derecha */
   align-items: center;
+  background: linear-gradient(90deg, #004080, #0066cc);
+  padding: 1rem 3rem;
+  padding-bottom: 1rem;
+    color: white;
+  
 }
 
+/* Logo */
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
 }
 
+.subtitulo {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Navbar */
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem; 
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.nav-links li a {
+.nav-links a {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
-.nav-links li a:hover {
-  text-decoration: underline;
+/* Animacion del hoover de los links de nav */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #ffcc00; 
+  transition: width 0.3s ease;
 }
 
-.container {
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #ffcc00;
+}
+/* Acciones rápidas dentro de card */
+.quick-actions {
+  max-width: 500px;
+  margin: 10rem auto;
+  background: #fff;
   padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-h1, h2 {
-  margin-bottom: 1rem;
+.quick-actions h2 {
+  color: #004080;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
-.cards {
+.actions {
   display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 1rem;
-  flex: 1 1 200px;
-}
-
-.card h3 {
-  margin-top: 0;
-  color: #004080;
-}
-
-#acciones ul {
-  list-style: none;
+  flex-direction: column;
+  gap: 15px;
   padding: 0;
+  list-style: none;
 }
 
-#acciones li {
-  margin-bottom: 0.5rem;
-}
-
-#acciones a {
-  color: #004080;
+.actions .boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #004080, #0066cc);
+  color: #fff;
+  padding: 14px;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-#acciones a:hover {
-  text-decoration: underline;
+.actions .boton:hover {
+  background: linear-gradient(135deg, #003366, #004c99);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
 
 /* footer {
   background-color: #e0e0e0;
