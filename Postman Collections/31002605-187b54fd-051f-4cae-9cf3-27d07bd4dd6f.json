@@ -912,8 +912,8 @@
 							"script": {
 								"id": "f9526873-6a5b-4b02-bf88-8b9860c5d9c0",
 								"exec": [
-									"    pm.test(\"Status code is 201\", function () {\r",
-									"        pm.expect(pm.response.code).to.equal(201);\r",
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
 									"    });"
 								],
 								"type": "text/javascript",
@@ -930,7 +930,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 1,\r\n        \"nombre\": \"Norma\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }",
+							"raw": "{\r\n        \"nombre\": \"Norma\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
