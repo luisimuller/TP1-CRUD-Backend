@@ -491,18 +491,39 @@
 			"item": [
 				{
 					"name": "GET Clientes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17b10810-259c-4e2a-ad59-dd4235918e25",
+								"exec": [
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "625c6db1-d7b7-43f1-b76b-172113e8408d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}"
+						},
+						"url": "{{URL}}/clientes"
 					},
 					"response": [
 						{
 							"id": "f6849c77-a77d-40b3-bb47-a41b3a092274",
-							"name": "GET clientes succesfull",
+							"name": "GET clientes successfully",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -553,18 +574,35 @@
 				},
 				{
 					"name": "GET cliente by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba4ad84c-6dac-4dee-89db-352612d58403",
+								"exec": [
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "101e6c3a-de35-49bf-b67a-98d97edac57f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": "{{URL}}/clientes/{{idCliente}}"
 					},
 					"response": [
 						{
 							"id": "d8e18c3a-482c-44c4-9080-76ddf7dd4844",
-							"name": "GET Cliente by id succsessfull",
+							"name": "GET Cliente by id succsessfully",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -608,6 +646,18 @@
 							"body": "{\n    \"id\": 1,\n    \"nombre\": \"Pepe\",\n    \"apellido\": \"Gómez\",\n    \"razonSocial\": \"Pepe SRL\",\n    \"direccion\": \"Calle 123\",\n    \"telefono\": \"123456789\",\n    \"mail\": \"pepe@mail.com\"\n}"
 						}
 					]
+				},
+				{
+					"name": "Add cliente",
+					"id": "80a226c7-a364-432d-aad6-c3bf19ea2265",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "e8454747-396d-45d2-8b76-436ac5de90b7"
