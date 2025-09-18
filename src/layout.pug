@@ -19,10 +19,11 @@ html(lang="es")
     main
       block content
 
-    footer 
+    if typeof mostrarAccionesRapidas === 'undefined' || mostrarAccionesRapidas
+      footer 
         .quick-actions
-            h2 Acciones rápidas
-            ul.actions
-                li: a(href="/envios/agregar") ➕ Crear nuevo envío
-                li: a(href="/flota/asignar") 🚚 Asignar vehículo
-                li: a(href="/reportes") 📊 Ver reportes
+          h2 Acciones rápidas
+          ul.actions
+            li: a(href="/envios/agregar") ➕ Crear nuevo envío
+            li: a(href="/flota/asignar") 🚚 Asignar vehículo
+            li: a(href="/reportes") 📊 Ver reportes
