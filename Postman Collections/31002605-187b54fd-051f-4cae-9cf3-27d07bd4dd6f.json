@@ -1130,7 +1130,7 @@
 					"response": [
 						{
 							"id": "31002605-c0bd55f6-57ce-4bf2-99ba-779801227d93",
-							"name": "New Request",
+							"name": "Delete cliente successfully",
 							"originalRequest": {
 								"method": "DELETE",
 								"header": [],
