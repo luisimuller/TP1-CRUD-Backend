@@ -943,14 +943,14 @@
 					},
 					"response": [
 						{
-							"id": "31002605-4f52716f-44f1-4253-b780-fa968f2d3f7e",
-							"name": "Update cliente successfully",
+							"id": "31002605-0d94a5a1-f217-49c7-bd0e-21659ce16c0d",
+							"name": "New Request",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"id\": 1,\r\n        \"nombre\": \"Norma\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }",
+									"raw": "{\r\n        \"nombre\": \"Norma\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -990,7 +990,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 18 Sep 2025 19:24:12 GMT"
+									"value": "Thu, 18 Sep 2025 19:27:56 GMT"
 								},
 								{
 									"key": "Connection",
