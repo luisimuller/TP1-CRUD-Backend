@@ -944,7 +944,7 @@
 					"response": [
 						{
 							"id": "31002605-0d94a5a1-f217-49c7-bd0e-21659ce16c0d",
-							"name": "New Request",
+							"name": "Update cliente successfully",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
@@ -1009,13 +1009,47 @@
 				},
 				{
 					"name": "Patch Cliente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c97c78c4-006f-4496-bef2-c2e7072851b9",
+								"exec": [
+									"    pm.test(\"Status code is 201\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(201);\r",
+									"    });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-b9c6436b-a784-485e-b804-30f22c5da8c0",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n        \"nombre\": \"Alicia\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clientes/{{idCliente}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clientes",
+								"{{idCliente}}"
+							]
+						}
 					},
 					"response": []
 				}
