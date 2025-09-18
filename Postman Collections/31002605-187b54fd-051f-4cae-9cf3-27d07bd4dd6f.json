@@ -1119,13 +1119,48 @@
 				},
 				{
 					"name": "Delete cliente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09ad2dc4-35f0-417b-bb80-450eb403216f",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response tiene el mensaje de Cliente eliminado\", function () {\r",
+									"    pm.expect(pm.response.json().message).to.eql(\"Cliente eliminado\");\r",
+									"})\r",
+									"\r",
+									"pm.environment.set(\"idChofer\",\"\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-c5459f8a-951c-417a-ab2a-be0c95d8fb23",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n        \"nombre\": \"Alicia\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }"
+						},
+						"url": {
+							"raw": "{{URL}}/clientes/{{idCliente}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clientes",
+								"{{idCliente}}"
+							]
+						}
 					},
 					"response": [
 						{
