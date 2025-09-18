@@ -14,6 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "4c3cf2da-a36e-45ba-ad17-7982ead18d5d",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.expect(pm.response.code).to.equal(200);\r",
@@ -58,8 +59,7 @@
 									"pm.execution.setNextRequest(\"addfactura\");"
 								],
 								"type": "text/javascript",
-								"packages": {},
-								"id": "4c3cf2da-a36e-45ba-ad17-7982ead18d5d"
+								"packages": {}
 							}
 						}
 					],
