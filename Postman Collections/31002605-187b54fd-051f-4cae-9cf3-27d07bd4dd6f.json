@@ -597,13 +597,42 @@
 			"item": [
 				{
 					"name": "GET Clientes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17b10810-259c-4e2a-ad59-dd4235918e25",
+								"exec": [
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-625c6db1-d7b7-43f1-b76b-172113e8408d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \r\n    \"idCliente\":2,\r\n    \"idVehiculo\":1,\r\n    \"idChofer\":1,\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":2800\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/clientes",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
 					},
 					"response": [
 						{
@@ -667,13 +696,39 @@
 				},
 				{
 					"name": "GET cliente by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba4ad84c-6dac-4dee-89db-352612d58403",
+								"exec": [
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "31002605-101e6c3a-de35-49bf-b67a-98d97edac57f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clientes/{{idCliente}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clientes",
+								"{{idCliente}}"
+							]
+						}
 					},
 					"response": [
 						{
