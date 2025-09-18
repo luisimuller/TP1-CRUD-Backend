@@ -1118,7 +1118,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "Delete cliente",
 					"id": "31002605-c5459f8a-951c-417a-ab2a-be0c95d8fb23",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
