@@ -1127,7 +1127,66 @@
 						"method": "GET",
 						"header": []
 					},
-					"response": []
+					"response": [
+						{
+							"id": "31002605-c0bd55f6-57ce-4bf2-99ba-779801227d93",
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n        \"nombre\": \"Alicia\",\r\n        \"apellido\": \"Leandro\",\r\n        \"razonSocial\": \"Actrices SRL\",\r\n        \"direccion\": \"Calle 789\",\r\n        \"telefono\": \"123456789\",\r\n        \"mail\": \"Norma_leandro@mail.com\"\r\n    }"
+								},
+								"url": {
+									"raw": "{{URL}}/clientes/{{idCliente}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"clientes",
+										"{{idCliente}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "200"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c8-ngdjJDDnQ0bS6OxSNFJ4JoP44N4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Sep 2025 19:33:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"message\": \"Cliente eliminado\",\n    \"eliminado\": {\n        \"id\": 3,\n        \"nombre\": \"Esteban\",\n        \"apellido\": \"Quito\",\n        \"razonSocial\": \"Banquitos SRL\",\n        \"direccion\": \"Calle 456\",\n        \"telefono\": \"987654321\",\n        \"mail\": \"bancos_esteban@mail.com\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"id": "31002605-e8454747-396d-45d2-8b76-436ac5de90b7"
