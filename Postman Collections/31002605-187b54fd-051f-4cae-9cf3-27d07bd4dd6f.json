@@ -788,7 +788,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "Add cliente",
 					"id": "31002605-80a226c7-a364-432d-aad6-c3bf19ea2265",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
