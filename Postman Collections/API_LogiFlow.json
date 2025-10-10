@@ -2108,7 +2108,8 @@
 									"pm.execution.setNextRequest(\"Patch Chofer\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -2128,7 +2129,7 @@
 								}
 							}
 						},
-						"url": "{{URL}}/choferes/{{idChofer}}"
+						"url": "{{URL}}/chofer/{{idChofer}}"
 					},
 					"response": []
 				},
