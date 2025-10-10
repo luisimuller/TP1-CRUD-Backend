@@ -2094,6 +2094,45 @@
 					]
 				},
 				{
+					"name": "Update Chofer Mongo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "13dc1bfa-63d8-4bea-9c6e-ef8e01714b85",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Patch Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "86c20206-fc55-493f-bb34-4a1362842415",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/choferes/{{idChofer}}"
+					},
+					"response": []
+				},
+				{
 					"name": "Patch Chofer",
 					"event": [
 						{
