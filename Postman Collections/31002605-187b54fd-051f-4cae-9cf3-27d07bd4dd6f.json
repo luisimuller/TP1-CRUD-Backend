@@ -2776,6 +2776,50 @@
 							"body": "{\n    \"message\": \"Chofer eliminado\",\n    \"eliminado\": {\n        \"id\": 3,\n        \"nombre\": \"Juan Carlos\",\n        \"apellido\": \"Chaco\",\n        \"dni\": 14307775,\n        \"licencia\": \"Profesional\",\n        \"telefono\": 34565050509\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "Delete Chofer Mongo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "366ba8cb-e349-4bea-8dd7-037d3829c171",
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response tiene el mensaje de Chofer eliminado\", function () {\r",
+									"    pm.expect(pm.response.json().message).to.eql(\"Chofer eliminado\");\r",
+									"})\r",
+									"\r",
+									"pm.environment.set(\"idChofer\",\"\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "31002605-9c1a6e75-4925-4fb2-baec-d5f275c55f48",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/chofer/{{idChofer}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"chofer",
+								"{{idChofer}}"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "31002605-9abfd78a-bdb3-4eaf-ab4b-c21d97c5f8c4",
