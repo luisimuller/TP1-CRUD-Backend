@@ -50,9 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const id = formEditar.id.value;
       const data = Object.fromEntries(new FormData(formEditar));
+      console.log(data);
       delete data.id;
       try {
-        const res = await fetch(`/choferes/${id}`, {
+        const res = await fetch(`/chofer/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
