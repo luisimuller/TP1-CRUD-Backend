@@ -1925,7 +1925,8 @@
 									"pm.execution.setNextRequest(\"Update Chofer\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1940,12 +1941,12 @@
 							"mode": "raw",
 							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}"
 						},
-						"url": "{{URL}}/choferes/{{idChofer}}"
+						"url": "{{URL}}/chofer/{{idChofer}}"
 					},
 					"response": [
 						{
-							"id": "98b14bd6-733a-4e61-970c-bfb8c9e1c8ae",
-							"name": "Get Chofer by Id Successful",
+							"id": "fcd18e54-f7a7-46ce-a536-cccaefd5c86c",
+							"name": "Get Chofer by Id Mongo Success",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -1953,7 +1954,7 @@
 									"mode": "raw",
 									"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}"
 								},
-								"url": "{{URL}}/choferes/{{idChofer}}"
+								"url": "{{URL}}/chofer/{{idChofer}}"
 							},
 							"status": "OK",
 							"code": 200,
@@ -1971,15 +1972,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "113"
+									"value": "136"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"71-zIPkFrLv3ugj/GZ0uXrY1yqHFTY\""
+									"value": "W/\"88-a6slbvpPzEcAimHS5D1AV4kO7Rc\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 15 Sep 2025 19:29:26 GMT"
+									"value": "Fri, 10 Oct 2025 17:42:25 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1992,7 +1993,7 @@
 							],
 							"cookie": [],
 							"responseTime": null,
-							"body": "{\n    \"id\": 3,\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Chaco\",\n    \"dni\": 14307775,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 34565000289\n}"
+							"body": "{\n    \"_id\": \"68e92b2ff6307cce2475ccec\",\n    \"nombre\": \"Juan\",\n    \"apellido\": \"Perez\",\n    \"dni\": 6546546,\n    \"licencia\": \"Profesional\",\n    \"telefono\": 65654654,\n    \"__v\": 0\n}"
 						}
 					]
 				},
