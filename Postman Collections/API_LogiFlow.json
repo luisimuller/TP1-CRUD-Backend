@@ -2330,7 +2330,8 @@
 									"pm.environment.set(\"idChofer\",\"\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -2341,57 +2342,9 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "{{URL}}/choferes/{{idChofer}}"
+						"url": "{{URL}}/chofer/{{idChofer}}"
 					},
-					"response": [
-						{
-							"id": "50fc5507-a3c3-45b8-844e-dfa14b6e633d",
-							"name": "Delete Chofer Successful",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": "/choferes/3"
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json",
-									"description": "",
-									"type": "text"
-								},
-								{
-									"key": "Content-Length",
-									"value": "156"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"9c-cgEr+K4Z6T989dDjev6IsDRkhcw\""
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 15 Sep 2025 19:36:50 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "{\n    \"message\": \"Chofer eliminado\",\n    \"eliminado\": {\n        \"id\": 3,\n        \"nombre\": \"Juan Carlos\",\n        \"apellido\": \"Chaco\",\n        \"dni\": 14307775,\n        \"licencia\": \"Profesional\",\n        \"telefono\": 34565050509\n    }\n}"
-						}
-					]
+					"response": []
 				}
 			],
 			"id": "9abfd78a-bdb3-4eaf-ab4b-c21d97c5f8c4",
