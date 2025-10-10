@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(formAgregar));
       try {
-        const res = await fetch('/choferes/agregar', {
+        const res = await fetch('/chofer/agregar', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const id = li.getAttribute('data-id');
       if (confirm('¿Seguro que deseas eliminar este chofer?')) {
         try {
-          const res = await fetch(`/choferes/${id}`, { method: 'DELETE' });
+          const res = await fetch(`/chofer/${id}`, { method: 'DELETE' });
           if (res.ok) {
             location.reload();
           } else {

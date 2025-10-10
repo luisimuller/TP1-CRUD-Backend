@@ -1,5 +1,6 @@
 // /index.js
 const express = require("express");
+const mongoose = require('mongoose');
 const envioRoutes = require("./routes/envioRoutes");
 const choferRoutes = require("./routes/ChoferRoutes");
 const clienteRoutes = require("./routes/ClienteRoutes");
@@ -13,16 +14,20 @@ const path = require('path');
 
 app.use(express.json());
 
+mongoose.connect("mongodb://localhost/");
+
 //Directoria de recursos estaticos para front
 
 const ChoferModel = require('./models/ChoferModel');
+const { getChoferesPug } = require('./controllers/ChoferController');
 // Ruta para ver choferes con formato
-app.get('/choferes', function (req, res) {
-    const choferes = ChoferModel.getChoferes();
-    res.render('choferes', { choferes, mostrarAccionesRapidas: false });
+app.get('/choferes', async (req, res) => {
+    //const choferes = ChoferModel.getChoferes();
+    const choferes = await getChoferesPug();
+    res.render('choferes', {choferes,mostrarAccionesRapidas: false });
 });
-app.use('/choferes', choferRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/chofer', choferRoutes);
 
 //Pug Templates
 app.set('views','./src');

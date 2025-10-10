@@ -6,16 +6,15 @@ const {
     getChofer,
     addChofer,
     updateChofer,
-    patchChofer,
     deleteChofer
 } = require("../controllers/ChoferController");
 
 // Rutas CRUD
-router.get("/", getChoferes);              // GET    /choferes
-router.get("/:id", getChofer);            // GET    /choferes/:id
-router.post("/agregar", addChofer);       // POST   /choferes/agregar
-router.put("/:id", updateChofer);         // PUT    /choferes/:id
-router.patch("/:id", patchChofer);        // PATCH  /choferes/:id
-router.delete("/:id", deleteChofer);      // DELETE /choferes/:id
+router.get("/", getChoferes);              // GET    /chofer
+router.get("/:id", getChofer);            // GET    /chofer/:id
+router.post("/agregar", addChofer);       // POST   /chofer/agregar
+router.put("/:id", updateChofer);         // PUT    /chofer/:id
+router.patch("/:id", updateChofer);        // PATCH  /chofer/:id
+router.delete("/:id", deleteChofer);      // DELETE /chofer/:id
 
 module.exports = router;
