@@ -42,7 +42,7 @@ async function getVehiculos(){
 
 function cantVehiculosActivos() {
     getVehiculos().then( response => {
-        const cant = response.filter(v => v.estado == 'activo').length
+        const cant = response.filter(v => v.estado == 'Activo').length
 
         document.getElementById('cant-vehiculos').textContent = `${cant} Vehiculos`;
     })
