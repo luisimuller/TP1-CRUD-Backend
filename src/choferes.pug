@@ -10,7 +10,11 @@ block content
         input(type="text", name="nombre", placeholder="Nombre", required)
         input(type="text", name="apellido", placeholder="Apellido", required)
         input(type="text", name="dni", placeholder="DNI", required)
-        input(type="text", name="licencia", placeholder="Licencia", required)
+        //input(type="text", name="licencia", placeholder="Licencia", required)
+        select(name="licencia",placeholder="Licencia", required)
+          option(value="", selected disabled) Licencia
+          option(value="Profesional") Profesional
+          option(value="Civil") Civil
         input(type="text", name="telefono", placeholder="Teléfono", required)
         .modal-actions
           button(type="submit") Guardar
@@ -24,7 +28,10 @@ block content
         input(type="text", name="nombre", placeholder="Nombre", required)
         input(type="text", name="apellido", placeholder="Apellido", required)
         input(type="text", name="dni", placeholder="DNI", required)
-        input(type="text", name="licencia", placeholder="Licencia", required)
+        //input(type="text", name="licencia", placeholder="Licencia", required)
+        select(name="licencia", required)
+          option(value="Profesional") Profesional
+          option(value="Civil") Civil
         input(type="text", name="telefono", placeholder="Teléfono", required)
         .modal-actions
           button(type="submit") Guardar cambios
