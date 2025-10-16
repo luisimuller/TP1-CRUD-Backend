@@ -24,7 +24,7 @@ body {
 }
 
 /* Título principal */
-h1.titulo-choferes {
+h1.titulo-clientes {
   color: var(--primary-dark);
   text-align: center;
   padding: 2.5rem 0 1.5rem;
@@ -35,7 +35,7 @@ h1.titulo-choferes {
   position: relative;
 }
 
-h1.titulo-choferes::after {
+h1.titulo-clientes::after {
   content: '';
   display: block;
   width: 80px;
@@ -45,8 +45,8 @@ h1.titulo-choferes::after {
   border-radius: 2px;
 }
 
-/* Lista de choferes */
-.chofer-list {
+/* Lista de clientes */
+.cliente-list {
   list-style: none;
   padding: 0;
   max-width: 1200px;
@@ -57,8 +57,8 @@ h1.titulo-choferes::after {
   padding: 0 2rem 2rem;
 }
 
-/* Elementos de chofer */
-.chofer-item {
+/* Elementos de cliente */
+.cliente-item {
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
@@ -68,26 +68,26 @@ h1.titulo-choferes::after {
   border: 1px solid var(--border-color);
 }
 
-.chofer-item:hover {
+.cliente-item:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
 }
 
-/* Campos del chofer */
-.chofer-item div {
+/* Campos del cliente */
+.cliente-item div {
   margin-bottom: 0.8rem;
   font-size: 0.95rem;
   line-height: 1.4;
 }
 
-.chofer-nombre,
-.chofer-apellido {
+.cliente-nombre,
+.cliente-apellido {
   font-weight: 600;
   color: var(--primary-dark);
   font-size: 1.1rem;
 }
 
-.chofer-dni {
+.cliente-razonSocial {
   font-weight: 600;
   color: var(--primary-color);
   font-size: 1rem;
@@ -96,13 +96,14 @@ h1.titulo-choferes::after {
   margin-bottom: 1rem;
 }
 
-.chofer-licencia,
-.chofer-telefono {
+.cliente-direccion,
+.cliente-telefono,
+.cliente-mail {
   color: var(--text-light);
 }
 
 /* Botones de acción */
-.chofer-item button {
+.cliente-item button {
   margin: 0.5rem 0.25rem 0 0;
   padding: 0.6rem 1rem;
   border: none;
@@ -216,8 +217,8 @@ h1.titulo-choferes::after {
   box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
 }
 
-.modal form input[type="tel"] {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3e%3cpath d='M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z'/%3e%3c/svg%3e");
+.modal form input[type="email"] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3e%3cpath d='M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z'/%3e%3cpath d='M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
@@ -264,18 +265,18 @@ h1.titulo-choferes::after {
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .chofer-list {
+  .cliente-list {
     grid-template-columns: 1fr;
     padding: 0 1rem 2rem;
     gap: 1rem;
   }
   
-  h1.titulo-choferes {
+  h1.titulo-clientes {
     font-size: 2rem;
     padding: 2rem 0 1rem;
   }
   
-  .chofer-item {
+  .cliente-item {
     padding: 1rem;
   }
   
@@ -308,7 +309,7 @@ h1.titulo-choferes::after {
   }
 }
 
-.chofer-item {
+.cliente-item {
   animation: fadeIn 0.5s ease-out;
 }
 

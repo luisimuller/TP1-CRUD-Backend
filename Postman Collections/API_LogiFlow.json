@@ -648,6 +648,81 @@
 					]
 				},
 				{
+					"name": "GET cliente by id Mongo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba4ad84c-6dac-4dee-89db-352612d58403",
+								"exec": [
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "3ecef5e6-14ce-4f9b-8a49-0c9968ef2aee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/clientes/{{idCliente}}"
+					},
+					"response": [
+						{
+							"id": "5723b63e-bcd3-406b-abdb-4d4e331b778e",
+							"name": "GET cliente by id Mongo Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}/clientes/{{idCliente}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "170"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aa-TMIiH8X4SCXI5+P5uC0FM2bMfh4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Oct 2025 20:17:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"_id\": \"68f14e7a31044ee03a91dc56\",\n    \"nombre\": \"Juan\",\n    \"apellido\": \"Cliente\",\n    \"razonSocial\": \"Juan SRL\",\n    \"direccion\": \"La Calle 123\",\n    \"telefono\": 3456422050,\n    \"email\": \"test@email.com\"\n}"
+						}
+					]
+				},
+				{
 					"name": "Add cliente",
 					"event": [
 						{
