@@ -823,7 +823,62 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"id": "31002605-5723b63e-bcd3-406b-abdb-4d4e331b778e",
+							"name": "GET cliente by id Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/clientes/{{idCliente}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"clientes",
+										"{{idCliente}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "170"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aa-TMIiH8X4SCXI5+P5uC0FM2bMfh4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 16 Oct 2025 20:17:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"_id\": \"68f14e7a31044ee03a91dc56\",\n    \"nombre\": \"Juan\",\n    \"apellido\": \"Cliente\",\n    \"razonSocial\": \"Juan SRL\",\n    \"direccion\": \"La Calle 123\",\n    \"telefono\": 3456422050,\n    \"email\": \"test@email.com\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Add cliente",
