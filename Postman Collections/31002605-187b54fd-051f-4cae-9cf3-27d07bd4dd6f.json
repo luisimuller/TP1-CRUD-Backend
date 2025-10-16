@@ -826,7 +826,7 @@
 					"response": [
 						{
 							"id": "31002605-5723b63e-bcd3-406b-abdb-4d4e331b778e",
-							"name": "GET cliente by id Copy",
+							"name": "GET cliente by id Mongo Success",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
