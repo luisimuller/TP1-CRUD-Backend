@@ -1,27 +1,27 @@
 // controllers/ClienteController.js
 const ClienteModel = require("../models/ClienteModel");
 
-// Obtener todos los clientes
-const getClientes = (req, res) => {
-    try {
-        res.json(ClienteModel.getClientes());
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener clientes", error: error.message });
-    }
-};
+// // Obtener todos los clientes
+// const getClientes = (req, res) => {
+//     try {
+//         res.json(ClienteModel.getClientes());
+//     } catch (error) {
+//         res.status(500).json({ message: "Error al obtener clientes", error: error.message });
+//     }
+// };
 
-// Obtener cliente por ID
-const getCliente = (req, res) => {
-    try {
-        const cliente = ClienteModel.getById(req.params.id);
-        if (!cliente) {
-            return res.status(404).json({ message: "Cliente no encontrado" });
-        }
-        res.json(cliente);
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener cliente", error: error.message });
-    }
-};
+// // Obtener cliente por ID
+// const getCliente = (req, res) => {
+//     try {
+//         const cliente = ClienteModel.getById(req.params.id);
+//         if (!cliente) {
+//             return res.status(404).json({ message: "Cliente no encontrado" });
+//         }
+//         res.json(cliente);
+//     } catch (error) {
+//         res.status(500).json({ message: "Error al obtener cliente", error: error.message });
+//     }
+// };
 
 // Agregar cliente
 const addCliente = (req, res) => {
@@ -76,6 +76,31 @@ const deleteCliente = (req, res) => {
         res.json({ message: "Cliente eliminado", eliminado });
     } catch (error) {
         res.status(500).json({ message: "Error al eliminar cliente", error: error.message });
+    }
+};
+
+var mongoose = require('mongoose');
+var Cliente = mongoose.model('ClienteModel');
+
+// Obtener todos los clientes
+const getClientes = async (req, res) => {
+    try {
+        res.json( await Cliente.find({}));
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener clientes", error: error.message });
+    }
+};
+
+// Obtener cliente por ID
+const getCliente = async (req, res) => {
+    try {
+        const cliente = await Cliente.findById(req.params.id);
+        if (!cliente) {
+            return res.status(404).json({ message: "Cliente no encontrado" });
+        }
+        res.json(cliente);
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener cliente", error: error.message });
     }
 };
 
