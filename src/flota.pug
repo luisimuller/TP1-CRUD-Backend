@@ -1,5 +1,80 @@
 extends layout
 block content
-  h1 Nuestra Flota
-  p Esta sección está en desarrollo.
-  p Aquí podrás gestionar los vehículos de la flota.
+  h1.titulo-flota Nuestra Flota
+  link(rel="stylesheet", href="/styles/flota.css")
+  // Modal para agregar vehículo
+  .modal#modalAgregarVehiculo(style="display:none;")
+    .modal-content
+      form#formAgregarVehiculo
+        h2 Agregar vehículo
+        input(type="text", name="patente", placeholder="Patente (ej: ABC-123)", required)
+        select(name="tipo", required)
+          option(value="", selected disabled) Tipo de vehículo
+          option(value="Camión") Camión
+          option(value="Furgón") Furgón
+          option(value="Camioneta") Camioneta
+        select(name="estado", required)
+          option(value="", selected disabled) Estado
+          option(value="Activo") Activo
+          option(value="En Reparación") En Reparación
+          option(value="Retirado") Retirado
+        input(type="number", name="capacidad", placeholder="Capacidad (kg)", required min="1")
+        .modal-actions
+          button(type="submit") Guardar
+          button(type="button", id="btnCancelarAgregar") Cancelar
+  // Modal para editar vehículo
+  .modal#modalEditarVehiculo(style="display:none;")
+    .modal-content
+      form#formEditarVehiculo
+        h2 Modificar vehículo
+        input(type="hidden", name="id")
+        input(type="text", name="patente", placeholder="Patente", required)
+        select(name="tipo", required)
+          option(value="Camión") Camión
+          option(value="Furgón") Furgón
+          option(value="Camioneta") Camioneta
+        select(name="estado", required)
+          option(value="Activo") Activo
+          option(value="En Reparación") En Reparación
+          option(value="Retirado") Retirado
+        input(type="number", name="capacidad", placeholder="Capacidad (kg)", required min="1")
+        .modal-actions
+          button(type="submit") Guardar cambios
+          button(type="button", id="btnCancelarEditar") Cancelar
+  button#btnMostrarFormAgregar.btn-fab(type="button") Agregar vehículo
+  
+  // DATOS HARDCODEADOS TEMPORALMENTE PARA PROBAR
+  ul.vehiculo-list
+    li.vehiculo-item(data-id="test1" class="estado-activo")
+      .vehiculo-patente Patente: ABC-123
+      .vehiculo-tipo Tipo: Camión
+      .vehiculo-estado Estado: 
+        span.badge.badge-activo Activo
+      .vehiculo-capacidad Capacidad: 5000 kg
+      .vehiculo-actions
+        button.btn-modificar(type="button") Modificar
+        button.btn-eliminar(type="button") Eliminar
+    li.vehiculo-item(data-id="test2" class="estado-en-reparacion")
+      .vehiculo-patente Patente: DEF-456
+      .vehiculo-tipo Tipo: Furgón
+      .vehiculo-estado Estado: 
+        span.badge.badge-en-reparacion En Reparación
+      .vehiculo-capacidad Capacidad: 2000 kg
+      .vehiculo-actions
+        button.btn-modificar(type="button") Modificar
+        button.btn-eliminar(type="button") Eliminar
+    li.vehiculo-item(data-id="test3" class="estado-activo")
+      .vehiculo-patente Patente: GHI-789
+      .vehiculo-tipo Tipo: Camioneta
+      .vehiculo-estado Estado: 
+        span.badge.badge-activo Activo
+      .vehiculo-capacidad Capacidad: 1000 kg
+      .vehiculo-actions
+        button.btn-modificar(type="button") Modificar
+        button.btn-eliminar(type="button") Eliminar
+  
+  script(src="/scripts/flota.js")
+  
+  // OCULTAR ACCIONES RÁPIDAS
+  style.
+    footer { display: none !important; }

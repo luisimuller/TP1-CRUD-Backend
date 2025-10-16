@@ -8,9 +8,13 @@
   --text-light: #666;
   --error-color: #d32f2f;
   --success-color: #388e3c;
+  --warning-color: #f57c00;
   --border-color: #ddd;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --activo-color: #4caf50;
+  --reparacion-color: #ff9800;
+  --retirado-color: #f44336;
 }
 
 /* Estilos generales */
@@ -24,7 +28,7 @@ body {
 }
 
 /* Título principal */
-h1.titulo-choferes {
+h1.titulo-flota {
   color: var(--primary-dark);
   text-align: center;
   padding: 2.5rem 0 1.5rem;
@@ -35,7 +39,7 @@ h1.titulo-choferes {
   position: relative;
 }
 
-h1.titulo-choferes::after {
+h1.titulo-flota::after {
   content: '';
   display: block;
   width: 80px;
@@ -45,8 +49,29 @@ h1.titulo-choferes::after {
   border-radius: 2px;
 }
 
-/* Lista de choferes */
-.chofer-list {
+/* Mensaje cuando no hay vehículos */
+.mensaje-vacio {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-light);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mensaje-vacio h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.mensaje-vacio p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Lista de vehículos */
+.vehiculo-list {
   list-style: none;
   padding: 0;
   max-width: 1200px;
@@ -57,8 +82,8 @@ h1.titulo-choferes::after {
   padding: 0 2rem 2rem;
 }
 
-/* Elementos de chofer */
-.chofer-item {
+/* Elementos de vehículo */
+.vehiculo-item {
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
@@ -66,44 +91,97 @@ h1.titulo-choferes::after {
   transition: all 0.3s ease;
   position: relative;
   border: 1px solid var(--border-color);
+  border-left: 5px solid var(--primary-color);
 }
 
-.chofer-item:hover {
+.vehiculo-item:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
 }
 
-/* Campos del chofer */
-.chofer-item div {
+/* Estados específicos */
+.vehiculo-item.estado-activo {
+  border-left-color: var(--activo-color);
+}
+
+.vehiculo-item.estado-en-reparacion {
+  border-left-color: var(--reparacion-color);
+}
+
+.vehiculo-item.estado-retirado {
+  border-left-color: var(--retirado-color);
+  opacity: 0.8;
+}
+
+/* Campos del vehículo */
+.vehiculo-item div {
   margin-bottom: 0.8rem;
   font-size: 0.95rem;
   line-height: 1.4;
 }
 
-.chofer-nombre,
-.chofer-apellido {
-  font-weight: 600;
+.vehiculo-patente {
+  font-weight: 700;
   color: var(--primary-dark);
-  font-size: 1.1rem;
-}
-
-.chofer-dni {
-  font-weight: 600;
-  color: var(--primary-color);
-  font-size: 1rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.chofer-licencia,
-.chofer-telefono {
-  color: var(--text-light);
+.vehiculo-tipo {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1rem;
 }
 
-/* Botones de acción */
-.chofer-item button {
-  margin: 0.5rem 0.25rem 0 0;
+.vehiculo-estado {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vehiculo-capacidad {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* Badges de estado */
+.badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-activo {
+  background: var(--activo-color);
+  color: white;
+}
+
+.badge-en-reparacion {
+  background: var(--reparacion-color);
+  color: white;
+}
+
+.badge-retirado {
+  background: var(--retirado-color);
+  color: white;
+}
+
+/* Acciones del vehículo */
+.vehiculo-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.vehiculo-item button {
   padding: 0.6rem 1rem;
   border: none;
   border-radius: 6px;
@@ -113,6 +191,7 @@ h1.titulo-choferes::after {
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  flex: 1;
 }
 
 .btn-modificar {
@@ -216,8 +295,8 @@ h1.titulo-choferes::after {
   box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
 }
 
-.modal form input[type="tel"] {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3e%3cpath d='M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z'/%3e%3c/svg%3e");
+.modal form input[type="number"] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3e%3cpath d='M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
@@ -264,19 +343,23 @@ h1.titulo-choferes::after {
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .chofer-list {
+  .vehiculo-list {
     grid-template-columns: 1fr;
     padding: 0 1rem 2rem;
     gap: 1rem;
   }
   
-  h1.titulo-choferes {
+  h1.titulo-flota {
     font-size: 2rem;
     padding: 2rem 0 1rem;
   }
   
-  .chofer-item {
+  .vehiculo-item {
     padding: 1rem;
+  }
+  
+  .vehiculo-actions {
+    flex-direction: column;
   }
   
   .btn-fab {
@@ -308,7 +391,7 @@ h1.titulo-choferes::after {
   }
 }
 
-.chofer-item {
+.vehiculo-item {
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -343,6 +426,33 @@ h1.titulo-choferes::after {
   }
 }
 
+/* Filtros de estado */
+.filtros-estado {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.filtro-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 25px;
+  background: white;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filtro-btn.activo,
+.filtro-btn:hover {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  color: white;
+}
+
 /* Mensajes de estado */
 .mensaje {
   padding: 1rem;
@@ -363,4 +473,10 @@ h1.titulo-choferes::after {
   background: #ffebee;
   color: var(--error-color);
   border: 1px solid #ffcdd2;
+}
+
+.mensaje.warning {
+  background: #fff8e1;
+  color: var(--warning-color);
+  border: 1px solid #ffecb3;
 }
