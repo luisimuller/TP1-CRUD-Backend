@@ -1,0 +1,46 @@
+extends layout
+block content
+  h1.titulo-clientes Clientes
+  link(rel="stylesheet", href="/styles/clientes.css")
+  // Modal para agregar cliente
+  .modal#modalAgregarCliente(style="display:none;")
+    .modal-content
+      form#formAgregarCliente
+        h2 Agregar cliente
+        input(type="text", name="nombre", placeholder="Nombre", required)
+        input(type="text", name="apellido", placeholder="Apellido", required)
+        input(type="text", name="razonSocial", placeholder="Razón Social", required)
+        input(type="text", name="direccion", placeholder="Dirección")
+        input(type="text", name="telefono", placeholder="Teléfono")
+        input(type="email", name="mail", placeholder="Email")
+        .modal-actions
+          button(type="submit") Guardar
+          button(type="button", id="btnCancelarAgregar") Cancelar
+  // Modal para editar cliente
+  .modal#modalEditarCliente(style="display:none;")
+    .modal-content
+      form#formEditarCliente
+        h2 Modificar cliente
+        input(type="hidden", name="id")
+        input(type="text", name="nombre", placeholder="Nombre", required)
+        input(type="text", name="apellido", placeholder="Apellido", required)
+        input(type="text", name="razonSocial", placeholder="Razón Social", required)
+        input(type="text", name="direccion", placeholder="Dirección")
+        input(type="text", name="telefono", placeholder="Teléfono")
+        input(type="email", name="mail", placeholder="Email")
+        .modal-actions
+          button(type="submit") Guardar cambios
+          button(type="button", id="btnCancelarEditar") Cancelar
+  button#btnMostrarFormAgregar.btn-fab(type="button") Agregar cliente
+  ul.cliente-list
+    each cliente in clientes
+      li.cliente-item(data-id=cliente._id)
+        .cliente-nombre Nombre: #{cliente.nombre}
+        .cliente-apellido Apellido: #{cliente.apellido}
+        .cliente-razonSocial Razón Social: #{cliente.razonSocial}
+        .cliente-direccion Dirección: #{cliente.direccion}
+        .cliente-telefono Teléfono: #{cliente.telefono}
+        .cliente-mail Email: #{cliente.mail}
+        button.btn-modificar(type="button") Modificar
+        button.btn-eliminar(type="button") Eliminar
+  script(src="/scripts/clientes.js")
