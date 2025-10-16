@@ -648,6 +648,35 @@
 					]
 				},
 				{
+					"name": "GET cliente by id Mongo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba4ad84c-6dac-4dee-89db-352612d58403",
+								"exec": [
+									"    pm.test(\"Status code is 200\", function () {\r",
+									"        pm.expect(pm.response.code).to.equal(200);\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "3ecef5e6-14ce-4f9b-8a49-0c9968ef2aee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/clientes/{{idCliente}}"
+					},
+					"response": []
+				},
+				{
 					"name": "Add cliente",
 					"event": [
 						{
