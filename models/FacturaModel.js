@@ -1,4 +1,4 @@
-const database = require("../data/database");
+/*const database = require("../data/database");
 
 class FacturaModel {
     // Obtener todas las facturas con datos relacionados
@@ -127,4 +127,16 @@ class FacturaModel {
     }
 }
 
-module.exports = new FacturaModel();
+module.exports = new FacturaModel();*/
+
+const mongoose = require("mongoose");
+
+const FacturaSchema = new mongoose.Schema({
+  idEnvio: { type: mongoose.Schema.Types.ObjectId, ref: "Envio", required: true, unique: true },
+  fecha: { type: Date, default: Date.now },
+  monto: { type: Number, required: true },
+  metodoPago: { type: String, enum: ["efectivo", "transferencia", "tarjeta"], required: true }
+});
+
+module.exports = mongoose.model("Factura", FacturaSchema);
+

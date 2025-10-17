@@ -46,11 +46,11 @@ const getVehiculo = async (req, res) => {
 const addVehiculo = async (req, res) => {
     try {
         const { patente, tipo, estado, capacidad } = req.body;
-        
+
         if (!patente || !tipo || !estado || !capacidad) {
             return res.status(400).json({ message: "Faltan datos obligatorios: patente, tipo, estado, capacidad" });
         }
-        
+
         const nuevoVehiculo = new Vehiculo({
             patente: patente,
             tipo: tipo,
@@ -59,7 +59,7 @@ const addVehiculo = async (req, res) => {
         });
 
         await nuevoVehiculo.save();
-        
+
         res.status(201).json(nuevoVehiculo);
     } catch (error) {
         if (error.code === 11000) {
@@ -74,13 +74,13 @@ const updateVehiculo = async (req, res) => {
     try {
         const { patente, tipo, estado, capacidad } = req.body;
 
-        const actualizado = await Vehiculo.updateOne({_id: req.params.id}, {
+        const actualizado = await Vehiculo.updateOne({ _id: req.params.id }, {
             patente,
             tipo,
             estado,
             capacidad
         });
-        
+
         if (!actualizado) {
             return res.status(404).json({ message: "Vehículo no encontrado" });
         }
@@ -96,8 +96,8 @@ const updateVehiculo = async (req, res) => {
 
 const patchVehiculo = async (req, res) => {
     try {
-        const actualizado = await Vehiculo.updateOne({_id: req.params.id}, req.body);
-        
+        const actualizado = await Vehiculo.updateOne({ _id: req.params.id }, req.body);
+
         if (!actualizado) {
             return res.status(404).json({ message: "Vehículo no encontrado" });
         }
@@ -115,11 +115,11 @@ const deleteVehiculo = async (req, res) => {
     try {
         const id = req.params.id;
         const vehiculoToDel = await Vehiculo.findById(id);
-        
+
         if (!vehiculoToDel) {
             return res.status(404).json({ message: "Vehículo no encontrado" });
         }
-        
+
         const eliminado = await vehiculoToDel.deleteOne().exec();
 
         res.json({ message: "Vehículo eliminado", eliminado });

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const formEditar = document.getElementById('formEditarChofer');
   const btnCancelarEditar = document.getElementById('btnCancelarEditar');
 
-  // Mostrar formulario de editar con datos actuales
+
   (() => {
     const modalEditar = document.getElementById('modalEditarChofer');
     const formEditar = document.getElementById('formEditarChofer');

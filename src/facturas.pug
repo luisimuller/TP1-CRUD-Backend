@@ -1,0 +1,66 @@
+extends layout
+
+block content
+  h1.titulo-facturas Facturas
+  link(rel="stylesheet", href="/styles/facturas.css")
+
+  // Botón para mostrar modal de agregar factura
+  button#btnMostrarFormAgregar.btn-fab(type="button") Agregar factura
+
+  // Modal para agregar factura
+  .modal#modalAgregarFactura(style="display:none;")
+    .modal-content
+      form#formAgregarFactura
+        h2 Agregar factura
+        select(name="idEnvio", required)
+          option(value="", selected disabled) Selecciona envío
+          each envio in enviosDisponibles
+            option(value=envio._id)= envio.origen + " → " + envio.destino + " (" + envio.fechaEnvio.toISOString().split('T')[0] + ")"
+        input(type="date", name="fecha", required)
+        input(type="number", name="monto", placeholder="Monto", required)
+        select(name="metodoPago", required)
+          option(value="", selected disabled) Método de pago
+          option(value="efectivo") Efectivo
+          option(value="transferencia") Transferencia
+          option(value="tarjeta") Tarjeta
+        .modal-actions
+          button(type="submit") Guardar
+          button(type="button", id="btnCancelarAgregar") Cancelar
+
+  // Modal para editar factura
+  .modal#modalEditarFactura(style="display:none;")
+    .modal-content
+      form#formEditarFactura
+        h2 Modificar factura
+        input(type="hidden", name="_id")
+        select(name="idEnvio", required)
+          option(value="", selected disabled) Selecciona envío
+          each envio in enviosDisponibles
+            option(value=envio._id)= envio.origen + " → " + envio.destino + " (" + envio.fechaEnvio.toISOString().split('T')[0] + ")"
+        input(type="date", name="fecha", required)
+        input(type="number", name="monto", placeholder="Monto", required)
+        select(name="metodoPago", required)
+          option(value="efectivo") Efectivo
+          option(value="transferencia") Transferencia
+          option(value="tarjeta") Tarjeta
+        .modal-actions
+          button(type="submit") Guardar cambios
+          button(type="button", id="btnCancelarEditar") Cancelar
+
+  // Lista de facturas
+  ul.factura-list
+    each factura in facturas
+      li.factura-item(data-id=factura._id)
+        .factura-envio
+        .factura-envio
+          if factura.idEnvio
+            = "ID Envío: " + factura.idEnvio._id
+          else
+            | Envío eliminado
+        .factura-fecha= "Fecha: " + factura.fecha.toISOString().split('T')[0]
+        .factura-monto= "Monto: $" + factura.monto
+        .factura-metodoPago= "Método de Pago: " + factura.metodoPago
+        button.btn-modificar(type="button") Modificar
+        button.btn-eliminar(type="button") Eliminar
+
+  script(src="/scripts/facturas.js")

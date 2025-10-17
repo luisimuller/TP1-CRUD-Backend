@@ -1,0 +1,114 @@
+extends layout
+
+block content
+  h1.titulo-envios Envios
+    link(rel="stylesheet", href="/styles/envios.css")
+
+  // ----------------- LISTA DE ENVÍOS -----------------
+  ul#envio-list.envio-list
+    each envio in envios
+      li.envio-item
+        .envio-id ID: #{envio._id}
+        .envio-origen Origen: #{envio.origen}
+        .envio-destino Destino: #{envio.destino}
+        .envio-cliente
+          | Cliente: 
+          if envio.idCliente
+            = envio.idCliente.nombre
+          else
+            | N/A
+        .envio-vehiculo
+          | Vehículo: 
+          if envio.idVehiculo
+            = envio.idVehiculo.patente
+          else
+            | N/A
+        .envio-chofer
+          | Chofer: 
+          if envio.idChofer
+            = envio.idChofer.nombre
+          else
+            | N/A
+        .envio-fecha Fecha: #{envio.fechaEnvio ? envio.fechaEnvio.toISOString().split('T')[0] : ''}
+        .envio-estado Estado: #{envio.estado || 'Pendiente'}
+        .envio-costo Costo: #{envio.costo || 0}
+
+        // ----------------- BOTONES DE ACCIÓN -----------------
+        .envio-actions
+          button.btn-editar(data-id=envio._id) Editar
+          button.btn-eliminar(data-id=envio._id) Eliminar
+
+  // ----------------- BOTÓN FLOTANTE -----------------
+  button.btn-fab#btnAgregarEnvio Agregar Envío
+
+  // ----------------- MODAL AGREGAR -----------------
+  .modal#modalAgregarEnvio(style="display:none;")
+    .modal-content
+      h2 Agregar Envío
+      form#formAgregarEnvio
+        select(name="idCliente", required)
+          option(value="") Seleccionar Cliente
+          each cliente in clientes
+            option(value=cliente._id) #{cliente.nombre}
+        select(name="idVehiculo", required)
+          option(value="") Seleccionar Vehículo
+          each vehiculo in vehiculos
+            option(value=vehiculo._id) #{vehiculo.patente}
+        select(name="idChofer", required)
+          option(value="") Seleccionar Chofer
+          each chofer in choferes
+            option(value=chofer._id) #{chofer.nombre}
+        input(type="text", name="origen", placeholder="Origen", required)
+        input(type="text", name="destino", placeholder="Destino", required)
+        input(type="date", name="fechaEnvio")
+        input(type="text", name="estado", placeholder="Estado")
+        input(type="number", name="costo", placeholder="Costo")
+        .modal-actions
+          button(type="submit") Guardar
+          button(type="button", id="btnCancelarAgregar") Cancelar
+
+  // ----------------- MODAL EDITAR -----------------
+  .modal#modalEditarEnvio(style="display:none;")
+    .modal-content
+      h2 Editar Envío
+      form#formEditarEnvio
+        input(type="hidden", name="id")
+
+        label(for="idCliente") Cliente
+        select(name="idCliente", required)
+          option(value="") Seleccionar Cliente
+          each cliente in clientes
+            option(value=cliente._id) #{cliente.nombre}
+
+        label(for="idVehiculo") Vehículo
+        select(name="idVehiculo", required)
+          option(value="") Seleccionar Vehículo
+          each vehiculo in vehiculos
+            option(value=vehiculo._id) #{vehiculo.patente}
+
+        label(for="idChofer") Chofer
+        select(name="idChofer", required)
+          option(value="") Seleccionar Chofer
+          each chofer in choferes
+            option(value=chofer._id) #{chofer.nombre}
+
+        label(for="origen") Origen
+        input(type="text", name="origen", placeholder="Origen", required)
+
+        label(for="destino") Destino
+        input(type="text", name="destino", placeholder="Destino", required)
+
+        label(for="fechaEnvio") Fecha de Envío
+        input(type="date", name="fechaEnvio")
+
+        label(for="estado") Estado
+        input(type="text", name="estado", placeholder="Estado")
+
+        label(for="costo") Costo
+        input(type="number", name="costo", placeholder="Costo")
+
+        .modal-actions
+          button(type="submit") Guardar Cambios
+          button(type="button", id="btnCancelarEditar") Cancelar
+
+  script(src="/scripts/envios.js")
