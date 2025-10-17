@@ -1,102 +1,77 @@
-const FacturaModel = require("../models/FacturaModel");
+const Factura = require("../models/FacturaModel");
+const Envio = require("../models/EnvioModel");
 
-const getFacturas = (req, res) => {
-    try {
-        res.json(FacturaModel.getFacturas());
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener facturas", error: error.message });
-    }
+// Render página de facturas
+const renderFacturasPage = async (req, res) => {
+  try {
+    // Solo mostrar facturas con envío poblado
+    const facturas = await Factura.find().populate("idEnvio").lean();
+
+    // Para el modal: envíos que aún no tienen factura
+    const facturados = await Factura.find({}, "idEnvio");
+    const idsFacturados = facturados.map(f => f.idEnvio.toString());
+    const enviosDisponibles = await Envio.find({ _id: { $nin: idsFacturados } }).lean();
+
+    res.render("facturas", {
+      facturas, enviosDisponibles,
+      mostrarAccionesRapidas: false
+    });
+  } catch (err) {
+    res.status(500).send("Error al cargar facturas");
+  }
 };
 
-const getFactura = (req, res) => {
-    try {
-        const factura = FacturaModel.getById(req.params.id);
-        if (!factura) {
-            return res.status(404).json({ message: "Factura no encontrada" });
-        }
-        res.json(factura);
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener la factura", error: error.message });
-    }
+// GET /facturas/api
+const getFacturas = async (req, res) => {
+  try {
+    const facturas = await Factura.find().populate("idEnvio").lean();
+    res.json(facturas);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
-const addFactura = (req, res) => {
-    try {
-        const { idEnvio, fecha, monto, metodoPago } = req.body;
-        
-        if (!idEnvio || !fecha || !monto || !metodoPago) {
-            return res.status(400).json({ 
-                message: "Faltan datos obligatorios: idEnvio, fecha, monto, metodoPago" 
-            });
-        }
-        
-        const nuevaFactura = FacturaModel.addFactura({
-            idEnvio: parseInt(idEnvio),
-            fecha,
-            monto: parseFloat(monto),
-            metodoPago
-        });
-        
-        res.status(201).json(nuevaFactura);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
+// POST /facturas/api/agregar
+const addFactura = async (req, res) => {
+  try {
+    const { idEnvio, fecha, monto, metodoPago } = req.body;
+
+    const envio = await Envio.findById(idEnvio);
+    if (!envio) return res.status(400).json({ message: "El envío no existe" });
+
+    const existente = await Factura.findOne({ idEnvio });
+    if (existente) return res.status(400).json({ message: "Este envío ya tiene una factura" });
+
+    const factura = await Factura.create({ idEnvio, fecha, monto, metodoPago });
+    res.status(201).json(factura);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
 
-const updateFactura = (req, res) => {
-    try {
-        const actualizado = FacturaModel.updateFactura(req.params.id, req.body);
-        if (!actualizado) {
-            return res.status(404).json({ message: "Factura no encontrada" });
-        }
-        res.json(actualizado);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
+// PUT /facturas/api/:id
+const updateFactura = async (req, res) => {
+  try {
+    const factura = await Factura.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!factura) return res.status(404).json({ message: "Factura no encontrada" });
+    res.json(factura);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
 
-const patchFactura = (req, res) => {
-    try {
-        const actualizado = FacturaModel.patchFactura(req.params.id, req.body);
-        if (!actualizado) {
-            return res.status(404).json({ message: "Factura no encontrada" });
-        }
-        res.json(actualizado);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
+// PATCH /facturas/api/:id
+const patchFactura = updateFactura;
+
+// DELETE /facturas/api/:id
+const deleteFactura = async (req, res) => {
+  try {
+    const factura = await Factura.findByIdAndDelete(req.params.id);
+    if (!factura) return res.status(404).json({ message: "Factura no encontrada" });
+    res.json({ message: "Factura eliminada", factura });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
-const deleteFactura = (req, res) => {
-    try {
-        const id = parseInt(req.params.id);
-        const eliminado = FacturaModel.removeFactura(id);
-        if (!eliminado) {
-            return res.status(404).json({ message: "Factura no encontrada" });
-        }
-        res.json({ message: "Factura eliminada", eliminado });
-    } catch (error) {
-        res.status(500).json({ message: "Error al eliminar factura", error: error.message });
-    }
-};
-
-// Obtener facturas por envío
-const getFacturasByEnvio = (req, res) => {
-    try {
-        const idEnvio = parseInt(req.params.idEnvio);
-        const facturas = FacturaModel.getByEnvio(idEnvio);
-        res.json(facturas);
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener facturas del envío", error: error.message });
-    }
-};
-
-module.exports = {
-    getFacturas,
-    getFactura,
-    addFactura,
-    updateFactura,
-    patchFactura,
-    deleteFactura,
-    getFacturasByEnvio
-};
+module.exports = { renderFacturasPage, getFacturas, addFactura, updateFactura, patchFactura, deleteFactura };
