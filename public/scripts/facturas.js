@@ -55,12 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', (e) => {
         const li = e.target.closest('.factura-item');
         const id = li.getAttribute('data-id');
-        const idEnvio = parseInt(li.querySelector('.factura-idEnvio').textContent.replace('ID Envío: ', ''));
+        const idEnvio = li.querySelector('.factura-idenvio').textContent.replace('ID Envío: ', '');
         const fecha = li.querySelector('.factura-fecha').textContent.replace('Fecha: ', '');
         const monto = parseFloat(li.querySelector('.factura-monto').textContent.replace('Monto: $', ''));
         const metodoPago = li.querySelector('.factura-metodoPago').textContent.replace('Método de Pago: ', '');
 
-        formEditar.id.value = envio._id;
+        formEditar._id.value = id;
+        formEditar.idEnvio.innerHTML = `<option value=${idEnvio} selected>${idEnvio}</option>`
         formEditar.idEnvio.value = idEnvio;
         formEditar.fecha.value = fecha;
         formEditar.monto.value = monto;
@@ -79,9 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ------------------ MODIFICAR FACTURA (PUT) ------------------
     formEditar.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const id = formEditar.id.value;
+      const id = formEditar._id.value;
       const data = {
-        idEnvio: parseInt(formEditar.idEnvio.value),
+        idEnvio: formEditar.idEnvio.value,
         fecha: formEditar.fecha.value,
         monto: parseFloat(formEditar.monto.value),
         metodoPago: formEditar.metodoPago.value

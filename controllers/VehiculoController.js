@@ -9,16 +9,16 @@ const getVehiculosPug = async () => {
         return vehiculos;
     } catch (error) {
         console.error('❌ Error al obtener vehículos para Pug:', error.message);
-        // Retornar datos de prueba si falla
-        return [
-            {
-                _id: '1',
-                patente: 'ABC-123',
-                tipo: 'Camión',
-                estado: 'Activo',
-                capacidad: 5000
-            }
-        ];
+        // // Retornar datos de prueba si falla
+        // return [
+        //     {
+        //         _id: '1',
+        //         patente: 'ABC-123',
+        //         tipo: 'Camión',
+        //         estado: 'Activo',
+        //         capacidad: 5000
+        //     }
+        // ];
     }
 };
 

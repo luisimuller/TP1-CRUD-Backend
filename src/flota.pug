@@ -45,33 +45,23 @@ block content
   
   // DATOS HARDCODEADOS TEMPORALMENTE PARA PROBAR
   ul.vehiculo-list
-    li.vehiculo-item(data-id="test1" class="estado-activo")
-      .vehiculo-patente Patente: ABC-123
-      .vehiculo-tipo Tipo: Camión
-      .vehiculo-estado Estado: 
-        span.badge.badge-activo Activo
-      .vehiculo-capacidad Capacidad: 5000 kg
-      .vehiculo-actions
-        button.btn-modificar(type="button") Modificar
-        button.btn-eliminar(type="button") Eliminar
-    li.vehiculo-item(data-id="test2" class="estado-en-reparacion")
-      .vehiculo-patente Patente: DEF-456
-      .vehiculo-tipo Tipo: Furgón
-      .vehiculo-estado Estado: 
-        span.badge.badge-en-reparacion En Reparación
-      .vehiculo-capacidad Capacidad: 2000 kg
-      .vehiculo-actions
-        button.btn-modificar(type="button") Modificar
-        button.btn-eliminar(type="button") Eliminar
-    li.vehiculo-item(data-id="test3" class="estado-activo")
-      .vehiculo-patente Patente: GHI-789
-      .vehiculo-tipo Tipo: Camioneta
-      .vehiculo-estado Estado: 
-        span.badge.badge-activo Activo
-      .vehiculo-capacidad Capacidad: 1000 kg
-      .vehiculo-actions
-        button.btn-modificar(type="button") Modificar
-        button.btn-eliminar(type="button") Eliminar
+    each vehiculo in vehiculos
+      li.vehiculo-item(data-id=vehiculo._id class=vehiculo.estado)
+        .vehiculo-patente Patente: #{vehiculo.patente}
+        .vehiculo-tipo Tipo: #{vehiculo.tipo}  
+        if vehiculo.estado == "Activo" 
+          .vehiculo-estado Estado:
+            span.badge.badge-activo Activo
+        else if vehiculo.estado == "Retirado"  
+          .vehiculo-estado Estado: 
+            span.badge.badge-retirado Retirado
+        else
+          .vehiculo-estado Estado:
+            span.badge.badge-en-reparacion En Reparación
+        .vehiculo-capacidad Capacidad: #{vehiculo.capacidad} kg
+        .vehiculo-actions
+          button.btn-modificar(type="button") Modificar
+          button.btn-eliminar(type="button") Eliminar
   
   script(src="/scripts/flota.js")
   

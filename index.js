@@ -14,7 +14,10 @@ const path = require('path');
 
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost/");
+//DB CONNECTION (NOW REMOTE)
+// mongoose.connect("mongodb://localhost/");
+mongoose.connect("mongodb+srv://User:Password@cluster0.f2gxjdm.mongodb.net/");
+
 
 //Directoria de recursos estaticos para front
 
@@ -75,9 +78,9 @@ app.get('/index', function (req, res) {
 app.get('/dashboard', function (req, res) {
     res.render('dashboard');
 });
-app.get('/flota', function (req, res) {
-    res.render('flota');
-});
+// app.get('/flota', function (req, res) {
+//     res.render('flota');
+// });
 
 app.get('/facturas-view', async (req, res) => {
     const facturas = await getFacturasPug();

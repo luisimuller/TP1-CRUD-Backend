@@ -15,7 +15,7 @@ async function getClientes(){
 async function getEnvios(){
     try {
         
-        const response = await fetch("/envios");
+        const response = await fetch("envios/api");
         
         if(response.ok){
             const data = await response.json();
@@ -50,7 +50,7 @@ function cantVehiculosActivos() {
 
 function cantEnviosActivos() {
     getEnvios().then( response => {
-        const cant = response.filter(e => e.estado !== 'Completo').length
+        const cant = response.length
 
         document.getElementById('cant-envios').textContent = `${cant} Envios`;
     })
