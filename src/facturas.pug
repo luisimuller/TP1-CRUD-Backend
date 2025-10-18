@@ -32,7 +32,7 @@ block content
     .modal-content
       form#formEditarFactura
         h2 Modificar factura
-        input(type="hidden", name="_id")
+        input(type='hidden' name="_id")
         select(name="idEnvio", required)
           option(value="", selected disabled) Selecciona envío
           each envio in enviosDisponibles
@@ -52,7 +52,7 @@ block content
     each factura in facturas
       li.factura-item(data-id=factura._id)
         .factura-envio
-        .factura-envio
+        .factura-idenvio
           if factura.idEnvio
             = "ID Envío: " + factura.idEnvio._id
           else
