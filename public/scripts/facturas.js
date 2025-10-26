@@ -1,6 +1,18 @@
 // Archivo: public/scripts/facturas_mod.js
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ------------------ ABRIR MODAL AUTOMÁTICAMENTE (si viene desde /facturas?abrirModalAgregarFactura=true) ------------------
+const params = new URLSearchParams(window.location.search);
+  const abrirModal = params.get("abrirModalAgregarFactura");
+  if (abrirModal === "true") {
+    const modalAgregar = document.getElementById("modalAgregarFactura");
+    if (modalAgregar) {
+      modalAgregar.style.display = "flex";
+      // Limpiar el parámetro de la URL
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  }
   // ------------------ MODAL AGREGAR FACTURA ------------------
   const btnMostrarFormAgregar = document.getElementById('btnMostrarFormAgregar');
   const modalAgregar = document.getElementById('modalAgregarFactura');

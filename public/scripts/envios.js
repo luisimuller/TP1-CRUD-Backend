@@ -11,6 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const listaEnvios = document.getElementById("envio-list");
 
+    // ---------- ABRIR MODAL AUTOMÁTICAMENTE SI LLEGA CON ?abrirModalAgregarEnvio=true ----------
+  const params = new URLSearchParams(window.location.search);
+  const abrirModal = params.get("abrirModalAgregarEnvio");
+
+  if (abrirModal === "true") {
+    const modal = document.getElementById("modalAgregarEnvio");
+    if (modal) {
+      modal.style.display = "flex";
+      // Limpia el parámetro de la URL después de abrir el modal
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  }
+
+
   // ---------- ABRIR/CERRAR MODALES ----------
   btnAgregar.addEventListener("click", () => {
     modalAgregar.style.display = "flex";

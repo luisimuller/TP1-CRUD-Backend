@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ---------- ABRIR MODAL AUTOMÁTICAMENTE SI LLEGA CON ?abrirModal=true ----------
+  const params = new URLSearchParams(window.location.search);
+  const abrirModal = params.get("abrirModalAgregarVechiculo");
+  if (abrirModal === "true") {
+    const modalAgregar = document.getElementById("modalAgregarVehiculo");
+    if (modalAgregar) {
+      modalAgregar.style.display = "flex";
+      // Limpiar parámetro de la URL
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  }
   // MODAL AGREGAR
   const btnMostrarForm = document.getElementById('btnMostrarFormAgregar');
   const modalAgregar = document.getElementById('modalAgregarVehiculo');
