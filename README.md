@@ -1,6 +1,16 @@
 # TP1-CRUD-Backend
-## Clases
-A continuación se muestrans las clases para nuestro proyecto y su relación:
+
+## 2da Entrega
+En esta segunda entrega: 
+* Se reestructuró el proyecto
+* Se realizó una mejora de las vistas del proyecto con PUG
+* Se incorporó MongoDB
+* Se actualizaron las rutas da la API
+* Se reestructuró el archivo Postman (ver API_LogiFlow_2daEntrega dentro de Postman Collections)
+
+
+## 1ra Entrega
+Este apartado muestra la estructura origianl de nuestro proyecto:
 
 **Cliente**
 
