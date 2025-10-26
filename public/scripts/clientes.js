@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ---------- ABRIR MODAL AUTOMÁTICAMENTE SI LLEGA CON ?abrirModalAgregarCliente=true ----------
+  const params = new URLSearchParams(window.location.search);
+  const abrirModal = params.get("abrirModalAgregarCliente");
+  if (abrirModal === "true") {
+    const modalAgregar = document.getElementById("modalAgregarCliente");
+    if (modalAgregar) {
+      modalAgregar.style.display = "flex";
+      // Limpiar el parámetro de la URL
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  }
+
   // MODAL AGREGAR
   const btnMostrarForm = document.getElementById('btnMostrarFormAgregar');
   const modalAgregar = document.getElementById('modalAgregarCliente');

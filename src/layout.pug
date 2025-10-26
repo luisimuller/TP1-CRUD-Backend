@@ -27,7 +27,7 @@ html(lang="es")
         .quick-actions
           h2 Acciones rápidas
           ul.actions
-            li: a.boton(href="/envios/agregar") ➕ Crear nuevo envío
-            li: a.boton(href="/clientes-view") 👥 Gestionar clientes
-            li: a.boton(href="/flota/asignar") 🚚 Asignar vehículo
-            li: a.boton(href="/reportes") 📊 Ver reportes
+            li: a.boton(href="/envios?abrirModalAgregarEnvio=true") ➕ Crear nuevo envío
+            li: a.boton(href="/clientes-view?abrirModalAgregarCliente=true") 👥 Agregar cliente
+            li: a.boton(href="/flota?abrirModalAgregarVechiculo=true") 🚚 Agregar vehículo
+            li: a.boton(href="/facturas?abrirModalAgregarFactura=true") 💵 Agregar factura
