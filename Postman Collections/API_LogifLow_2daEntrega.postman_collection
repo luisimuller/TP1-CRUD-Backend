@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "6e9cf1b7-bde9-4950-8b21-7c37f4653585",
+		"name": "API LogifLow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37128583"
+	},
+	"item": [
+		{
+			"name": "Facturacion",
+			"item": [
+				{
+					"name": "Get facturas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"// Verify that the response is an array\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(response).to.be.an('array');\r",
+									"});\r",
+									" const firstInvoice = response[0];\r",
+									"\r",
+									"// Test for the first invoice in the response\r",
+									"pm.test(\"First invoice has required properties\", function () {\r",
+									"    pm.expect(firstInvoice).to.have.property('id');\r",
+									"    pm.expect(firstInvoice).to.have.property('idEnvio');\r",
+									"    pm.expect(firstInvoice).to.have.property('fecha');\r",
+									"    pm.expect(firstInvoice).to.have.property('monto');\r",
+									"    pm.expect(firstInvoice).to.have.property('metodoPago');\r",
+									"    pm.expect(firstInvoice).to.have.property('envio');\r",
+									"})\r",
+									"    // Check the structure of the 'envio' object for the first invoice\r",
+									"pm.test(\"First invoice.envio has required properties\", function () {\r",
+									"    const envio = firstInvoice.envio;\r",
+									"    pm.expect(envio).to.have.property('id');\r",
+									"    pm.expect(envio).to.have.property('origen');\r",
+									"    pm.expect(envio).to.have.property('destino');\r",
+									"    pm.expect(envio).to.have.property('estado');\r",
+									"    pm.expect(envio).to.have.property('costo');\r",
+									"    pm.expect(envio).to.have.property('cliente');\r",
+									"})\r",
+									"\r",
+									"\r",
+									"pm.test(\"First invoice.envio.cliente has required properties\", function () {\r",
+									"    const cliente = firstInvoice.envio.cliente;\r",
+									"    pm.expect(cliente).to.have.property('id');\r",
+									"    pm.expect(cliente).to.have.property('nombre');\r",
+									"    pm.expect(cliente).to.have.property('razonSocial');\r",
+									"});\r",
+									"\r",
+									"pm.execution.setNextRequest(\"addfactura\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/facturas/api"
+					},
+					"response": []
+				},
+				{
+					"name": "Update factura",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idEnvio\": \"68f2dd8c8fc977873937c9e1\",\r\n  \"fecha\": \"2025-10-26\",\r\n  \"monto\": 200,\r\n  \"metodoPago\": \"efectivo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/facturas/api/{{idNuevaFactura}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch factura",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"monto\": 250\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/facturas/api/{{idNuevaFactura}}"
+					},
+					"response": []
+				},
+				{
+					"name": "add factura",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"idNuevaFactura\", pm.response.json().id);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idEnvio\": \"68f2dd8c8fc977873937c9e1\",\r\n  \"fecha\": \"2025-10-30\",\r\n  \"monto\": 5000,\r\n  \"metodoPago\": \"efectivo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/facturas/api/agregar"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete factura",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{URL}}/facturas/api/{{idNuevaFactura}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Get clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "Get cliente by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/clientes/{{idCliente}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"68f2dcb08fc977873937c9cd\",\r\n    \"nombre\": \"Ricardo\",\r\n    \"apellido\": \"Tapia\",\r\n    \"razonSocial\": \"Wayne Enterprise\",\r\n    \"direccion\": \"Gotham City\",\r\n    \"telefono\": \"3456558899\",\r\n    \"mail\": \"imrobin@wonderboy.com\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/clientes/{{idCliente}}"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Carlos\",\r\n  \"apellido\": \"González\",\r\n  \"razonSocial\": \"González S.A.\",\r\n  \"direccion\": \"Av. Libertad 123\",\r\n  \"telefono\": \"555123456\",\r\n  \"mail\": \"carlos.gonzalez@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/clientes/agregar"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{URL}}/clientes/{{idClienteNuevo}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Envio",
+			"item": [
+				{
+					"name": "GET envios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/envios/api"
+					},
+					"response": []
+				},
+				{
+					"name": "GET envio by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/envios/api/{{idEnvio}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Add new envio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \"idCliente\":\"68f2dcb08fc977873937c9cd\",\r\n    \"idVehiculo\":\"68f2d6958b2b9fbf9ce967ae\",\r\n    \"idChofer\":\"68f2c48299fc796470c2547b\",\r\n    \"origen\":\"Buenos Aires\",\r\n    \"destino\":\"Rosario\",\r\n    \"fechaEnvio\":\"2025-09-20\",\r\n    \"estado\":\"pendiente\",\r\n    \"costo\":3000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/envios/api/agregar"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch envio",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\": \"Enviado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/envios/api/{{idEnvio}}"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{URL}}/envios/api/{{idNuevoEnvio}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chofer",
+			"item": [
+				{
+					"name": "Get Choferes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Add Chofer\");",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/chofer"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 201\", function () {",
+									"    pm.expect(pm.response.code).to.eql(201);",
+									"});",
+									"",
+									"pm.test(\"Response devuelve un nuevo Chofer\", function(){",
+									"    pm.expect(pm.response.json()).to.have.property(\"id\");",
+									"});",
+									"",
+									"pm.environment.set(\"idChofer\", pm.response.json().id);",
+									"",
+									"pm.execution.setNextRequest(\"get Chofer by Id\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/chofer/agregar"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Chofer by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Update Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"dni\":14307775,\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565000289\r\n}"
+						},
+						"url": "{{URL}}/chofer/{{idChofer}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Patch Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"telefono\":34565050510\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/chofer/{{idChofer}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.execution.setNextRequest(\"Delete Chofer\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Carlos\",\r\n    \"apellido\":\"Chaco\",\r\n    \"licencia\":\"Profesional\",\r\n    \"telefono\":34565050509\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/chofer/{{idChofer}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Chofer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code es 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response tiene el mensaje de Chofer eliminado\", function () {\r",
+									"    pm.expect(pm.response.json().message).to.eql(\"Chofer eliminado\");\r",
+									"})\r",
+									"\r",
+									"pm.environment.set(\"idChofer\",\"\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{URL}}/chofer/{{idChofer}}"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "API Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/"
+			},
+			"response": []
+		}
+	]
+}
