@@ -1,4 +1,9 @@
 # TP1-CRUD-Backend
+## Entrega Final
+En esta última entrega:
+* Se refactorizó el código
+* Se mejoraron las pruebas de la API
+* Se realizó la documentación del proyecto
 
 ## 2da Entrega
 En esta segunda entrega: 
