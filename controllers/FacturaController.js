@@ -1,6 +1,9 @@
+// controllers/FacturaController.js
+// Importar modelos necesarios
 const Factura = require("../models/FacturaModel");
 const Envio = require("../models/EnvioModel");
 
+// ----------------- RENDER PÁGINA -----------------
 // Render página de facturas
 const renderFacturasPage = async (req, res) => {
   try {
@@ -20,7 +23,7 @@ const renderFacturasPage = async (req, res) => {
     res.status(500).send("Error al cargar facturas");
   }
 };
-
+// ----------------- API -----------------
 // GET /facturas/api
 const getFacturas = async (req, res) => {
   try {

@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ...código existente...
-
   // --- MODIFICAR CHOFER ---
   const formEditar = document.getElementById('formEditarChofer');
   const btnCancelarEditar = document.getElementById('btnCancelarEditar');
 
-
+// Abrir modal de edición
   (() => {
     const modalEditar = document.getElementById('modalEditarChofer');
     const formEditar = document.getElementById('formEditarChofer');
