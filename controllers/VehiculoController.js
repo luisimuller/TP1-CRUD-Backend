@@ -1,5 +1,7 @@
+// controllers/VehiculoController.js
+// Importar el modelo Vehiculo
 const Vehiculo = require("../models/VehiculoModel");
-
+//Funciones del controlador 
 const getVehiculosPug = async () => {
     try {
         console.log('🔍 Buscando vehículos para Pug...');
@@ -9,16 +11,6 @@ const getVehiculosPug = async () => {
         return vehiculos;
     } catch (error) {
         console.error('❌ Error al obtener vehículos para Pug:', error.message);
-        // // Retornar datos de prueba si falla
-        // return [
-        //     {
-        //         _id: '1',
-        //         patente: 'ABC-123',
-        //         tipo: 'Camión',
-        //         estado: 'Activo',
-        //         capacidad: 5000
-        //     }
-        // ];
     }
 };
 
@@ -128,14 +120,7 @@ const deleteVehiculo = async (req, res) => {
     }
 };
 
-// const getVehiculos = (req, res) => {
-//     try {
-//         res.json(VehiculoModel.getVehiculos());
-//     } catch (error) {
-//         res.status(500).json({ message: "Error al obtener Vehiculos", error: error.message });
-//     }
-// };
-
+// Exportar las funciones del controlador
 module.exports = {
     getVehiculos,
     getVehiculosPug,

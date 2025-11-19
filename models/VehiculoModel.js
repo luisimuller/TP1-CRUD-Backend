@@ -1,14 +1,5 @@
-// const database = require("../data/database");
-
-// class VehiculoModel {
-//     // Obtener todos los vehiculos
-//     getVehiculos() {
-//         return database.vehiculos;
-//     }
-// }
-
-// module.exports = new VehiculoModel();
-
+// models/VehiculoModel.js
+// Definición del esquema y modelo para los vehículos
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -36,5 +27,5 @@ var vehiculoSchema = new Schema({
             required: true
         }
 });
-
+// Exportar el modelo
 module.exports = mongoose.model('VehiculoModel', vehiculoSchema);

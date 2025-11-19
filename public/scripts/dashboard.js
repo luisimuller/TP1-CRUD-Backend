@@ -1,3 +1,5 @@
+// dashboard.js
+// Script para manejar el dashboard
 async function getClientes(){
     try {
         

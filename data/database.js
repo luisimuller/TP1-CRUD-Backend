@@ -1,3 +1,5 @@
+// data/database.js
+// Simulación de una base de datos en memoria
 class Database {
     constructor() {
         this.clientes = [
