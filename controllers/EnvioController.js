@@ -19,6 +19,21 @@ const getVehiculosPug = async () => {
 
 // ----------------- RENDER PÁGINA -----------------
 const renderEnviosPage = async (req, res) => {
+  console.log('📄 Renderizando página de envíos');
+  console.log('👤 Usuario:', req.session.usuario?.username, '- Rol:', req.session.usuario?.rol);
+  console.log('🔑 Permisos envíos:', req.session.usuario?.permisos?.envios);
+  
+  // Verificar permisos
+  if (!req.session.usuario.permisos.envios || !req.session.usuario.permisos.envios.ver) {
+    console.log('❌ Acceso denegado a envíos');
+    return res.status(403).render('error', {
+      mensaje: 'No tiene permisos para acceder a esta sección',
+      usuario: req.session.usuario
+    });
+  }
+  
+  console.log('✅ Acceso permitido a envíos');
+  
   try {
     const envios = await Envio.find()
       .populate("idCliente")
