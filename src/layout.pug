@@ -11,23 +11,32 @@ html(lang="es")
         h2.subtitulo Tu logística de confianza
       nav.navbar
         ul.nav-links 
-          li: a(href="/index") Home 
-          li: a(href="/dashboard") Dashboard
-          li: a(href="/envios") Envíos 
-          li: a(href="/flota") Nuestra Flota
-          li: a(href="/choferes") Nuestros Choferes
-          li: a(href="/clientes-view") Nuestros Clientes
-          li: a(href="/facturas") Facturas
+          li: a(href="/index") Home
+          if usuario
+            if usuario.permisos.dashboard
+              li: a(href="/dashboard") Dashboard
+            if usuario.permisos.envios && usuario.permisos.envios.ver
+              li: a(href="/envios") Envíos
+            if usuario.permisos.flota && usuario.permisos.flota.ver
+              li: a(href="/flota") Nuestra Flota
+            if usuario.permisos.choferes && usuario.permisos.choferes.ver
+              li: a(href="/choferes") Nuestros Choferes
+            if usuario.permisos.clientes && usuario.permisos.clientes.ver
+              li: a(href="/clientes") Nuestros Clientes
+            if usuario.permisos.facturas && usuario.permisos.facturas.ver
+              li: a(href="/facturas") Facturas
+            li: a(href="/logout" style="color: #f44336; font-weight: bold;") Cerrar Sesión (#{usuario.nombre})
 
     main
       block content
 
     if typeof mostrarAccionesRapidas === 'undefined' || mostrarAccionesRapidas
-      footer 
-        .quick-actions
-          h2 Acciones rápidas
-          ul.actions
-            li: a.boton(href="/envios?abrirModalAgregarEnvio=true") ➕ Crear nuevo envío
-            li: a.boton(href="/clientes-view?abrirModalAgregarCliente=true") 👥 Agregar cliente
-            li: a.boton(href="/flota?abrirModalAgregarVechiculo=true") 🚚 Agregar vehículo
-            li: a.boton(href="/facturas?abrirModalAgregarFactura=true") 💵 Agregar factura
+      if usuario && usuario.rol === 'Administrador'
+        footer 
+          .quick-actions
+            h2 Acciones rápidas
+            ul.actions
+              li: a.boton(href="/envios?abrirModalAgregarEnvio=true") ➕ Crear nuevo envío
+              li: a.boton(href="/clientes?abrirModalAgregarCliente=true") 👥 Agregar cliente
+              li: a.boton(href="/flota?abrirModalAgregarVechiculo=true") 🚚 Agregar vehículo
+              li: a.boton(href="/facturas?abrirModalAgregarFactura=true") 💵 Agregar factura

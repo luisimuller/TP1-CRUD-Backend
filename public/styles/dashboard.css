@@ -119,48 +119,6 @@ body {
     animation: pulse 1.5s ;
 }
 
-/* Sección de acciones rápidas */
-.quick-actions {
-    margin-bottom: 3rem;
-    text-align: center;
-}
-
-.quick-actions h2 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 1.8rem;
-    font-weight: 600;
-}
-
-.actions {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.actions li a {
-    background: linear-gradient(to right, var(--primary-color), var(--primary-light));
-    color: white;
-    padding: 14px 28px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 5px 15px rgba(0, 64, 128, 0.3);
-}
-
-.actions li a:hover {
-    background: linear-gradient(to right, var(--primary-light), #0080ff);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 64, 128, 0.4);
-}
-
 /* Sección del mapa */
 .map-section {
     text-align: center;

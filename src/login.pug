@@ -1,0 +1,190 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Login - LogiFlow
+    style.
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .login-container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .login-header {
+        background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+        color: white;
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .login-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .login-header p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .login-form {
+        padding: 40px 30px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #004080;
+        box-shadow: 0 0 0 3px rgba(0, 64, 128, 0.1);
+      }
+
+      .error-message {
+        background: #fee;
+        border-left: 4px solid #f44336;
+        color: #c62828;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+      }
+
+      .login-button {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .login-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 64, 128, 0.3);
+      }
+
+      .login-button:active {
+        transform: translateY(0);
+      }
+
+      .login-info {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f5f5f5;
+        border-radius: 10px;
+      }
+
+      .login-info h3 {
+        color: #004080;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+      }
+
+      .login-info p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 8px;
+      }
+
+      .login-info strong {
+        color: #004080;
+      }
+
+      @media (max-width: 480px) {
+        .login-header h1 {
+          font-size: 2rem;
+        }
+        
+        .login-form {
+          padding: 30px 20px;
+        }
+      }
+  body
+    .login-container
+      .login-header
+        h1 🚚 LogiFlow
+        p Sistema de Gestión Logística
+
+      .login-form
+        if error
+          .error-message= error
+
+        form(method="POST", action="/login")
+          .form-group
+            label(for="username") Usuario
+            input(
+              type="text"
+              id="username"
+              name="username"
+              required
+              autofocus
+              placeholder="Ingrese su usuario"
+            )
+
+          .form-group
+            label(for="password") Contraseña
+            input(
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Ingrese su contraseña"
+            )
+
+          button.login-button(type="submit") Iniciar Sesión
+
+        .login-info
+          h3 Usuarios disponibles:
+          p 
+            strong Administrador: 
+            | admin / admin123
+          p 
+            strong Chofer: 
+            | chofer1 / chofer123
+          p 
+            strong Facturista: 
+            | facturista1 / facturista123
